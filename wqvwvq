@@ -8358,14 +8358,14 @@ spawn(function()
 		while true do task.wait()
 			if  _G.FastAttack then
 				if SeraphFrame.activeController then
-					if v.Humanoid.Health > 0 then
+
 						SeraphFrame.activeController.timeToNextAttack = -(math.huge^math.huge^math.huge)
 						SeraphFrame.activeController.timeToNextAttack = 0
 						SeraphFrame.activeController.focusStart = 0
 						SeraphFrame.activeController.hitboxMagnitude = 110
 						SeraphFrame.activeController.humanoid.AutoRotate = true
 						SeraphFrame.activeController.increment = 4
-					end
+					
 				end
 			end
 		end
