@@ -705,9 +705,9 @@ Code = {
 }
 function GetUi() 
     if getgenv().Tvk then
-    if game.CoreGui:FindFirstChild("Sea Hub GUI") then
+    if game.CoreGui:FindFirstChild("Silver Hub GUI") then
         for a, v in ipairs(game.CoreGui:GetChildren()) do
-            if v.Name == "Sea Hub GUI" then
+            if v.Name == "Silver Hub GUI" then
                 v:Destroy()
             end
         end
@@ -828,20 +828,20 @@ local j = game:GetService("HttpService")
 local k = "!CustomUI.json"
 function SaveCustomUISettings()
     local j = game:GetService("HttpService")
-    if not isfolder("Sea Hub") then
-        makefolder("Sea Hub")
+    if not isfolder("Silver Hub") then
+        makefolder("Silver Hub")
     end
-    writefile("Sea Hub/" .. k, j:JSONEncode(CorrectTable(e)))
+    writefile("Silver Hub/" .. k, j:JSONEncode(CorrectTable(e)))
 end
 function ReadCustomUISetting()
     local l, m =
         pcall(
         function()
             local j = game:GetService("HttpService")
-            if not isfolder("Sea Hub") then
-                makefolder("Sea Hub")
+            if not isfolder("Silver Hub") then
+                makefolder("Silver Hub")
             end
-            local n = j:JSONDecode(readfile("Sea Hub/" .. k))
+            local n = j:JSONDecode(readfile("Silver Hub/" .. k))
             for d, v in pairs(n) do
                 local function o()
                     if v.Color == nil then
@@ -980,7 +980,7 @@ u.GetIMG = function(C)
 end
 u.Gui = Instance.new("ScreenGui")
 u.Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-u.Gui.Name = "Sea Hub GUI"
+u.Gui.Name = "Silver Hub GUI"
 getgenv().ReadyForGuiLoaded = false
 spawn(
     function()
@@ -993,7 +993,7 @@ spawn(
 )
 u.NotiGui = Instance.new("ScreenGui")
 u.NotiGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-u.NotiGui.Name = "Sea Hub Notification"
+u.NotiGui.Name = "Silver Hub Notification"
 local F = Instance.new("Frame")
 local G = Instance.new("UIListLayout")
 F.Name = "NotiContainer"
@@ -1207,15 +1207,15 @@ getgenv().GUI = u.Gui
 -- end
 -- SetUpTranslate()
 -- getgenv().TranslateCache = {}
--- if not isfolder("Sea Hub") then
---     makefolder("Sea Hub")
+-- if not isfolder("Silver Hub") then
+--     makefolder("Silver Hub")
 -- end
 -- local s,Translated = pcall(function() 
---     return game.HttpService:JSONDecode(readfile("Sea Hub/!UIText.json"))
+--     return game.HttpService:JSONDecode(readfile("Silver Hub/!UIText.json"))
 -- end)
 -- function SaveFile() 
 --     pcall(function() 
---         writefile("Sea Hub/!UIText.json",game.HttpService:JSONEncode(getgenv().TranslateCache))
+--         writefile("Silver Hub/!UIText.json",game.HttpService:JSONEncode(getgenv().TranslateCache))
 --     end)
 -- end
 -- function isnumber() end
@@ -1230,8 +1230,8 @@ getgenv().GUI = u.Gui
 --                     if des.Text=="" or #des.Text<=4 or tonumber(des.Text)~=nil then
 --                         return
 --                     end
---                     if string.match(des.Text,"Sea Hub") then 
---                         local tvk = des.Text:gsub("Sea Hub","Trung Tâm Biển")
+--                     if string.match(des.Text,"Silver Hub") then 
+--                         local tvk = des.Text:gsub("Silver Hub","Trung Tâm Biển")
 --                         des.Text = tvk
 --                         return
 --                     end
@@ -1347,7 +1347,7 @@ function t.CreateNoti(H)
     local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
     local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
     local g = V .. "," .. W .. "," .. X
-    Q.Text = '<font color="rgb(' .. g .. ')">Sea Hub</font> ' .. getgenv().TitleNameNoti
+    Q.Text = '<font color="rgb(' .. g .. ')">Silver Hub</font> ' .. getgenv().TitleNameNoti
     table.insert(
         c["Title Text Color"],
         function()
@@ -1355,7 +1355,7 @@ function t.CreateNoti(H)
             local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
             local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
             local g = V .. "," .. W .. "," .. X
-            Q.Text = '<font color="rgb(' .. g .. ')">Sea Hub</font> ' .. getgenv().TitleNameNoti
+            Q.Text = '<font color="rgb(' .. g .. ')">Silver Hub</font> ' .. getgenv().TitleNameNoti
         end
     )
     Q.Name = "TextLabelNoti"
@@ -1473,7 +1473,7 @@ function t.CreateNoti(H)
     )
 end
 function t.CreateMain(H)
-    local Z = tostring(H.Title) or "Sea Hub"
+    local Z = tostring(H.Title) or "Silver Hub"
     getgenv().MainDesc = H.Desc or ""
     local _ = false
     cac = false
@@ -1576,7 +1576,7 @@ function t.CreateMain(H)
         local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
         local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
         local g = V .. "," .. W .. "," .. X
-        ad.Text = '<font color="rgb(' .. g .. ')">Sea Hub</font> ' .. getgenv().MainDesc
+        ad.Text = '<font color="rgb(' .. g .. ')">Silver Hub</font> ' .. getgenv().MainDesc
         table.insert(
             c["Title Text Color"],
             function()
@@ -1585,7 +1585,7 @@ function t.CreateMain(H)
                 local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
                 local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
                 local g = V .. "," .. W .. "," .. X
-                ad.Text = '<font color="rgb(' .. g .. ')">Sea Hub</font> ' .. getgenv().MainDesc
+                ad.Text = '<font color="rgb(' .. g .. ')">Silver Hub</font> ' .. getgenv().MainDesc
             end
         )
         local as
@@ -1646,7 +1646,7 @@ function t.CreateMain(H)
     local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
     local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
     local g = V .. "," .. W .. "," .. X
-    ad.Text = '<font color="rgb(' .. g .. ')">Sea Hub</font> ' .. getgenv().MainDesc
+    ad.Text = '<font color="rgb(' .. g .. ')">Silver Hub</font> ' .. getgenv().MainDesc
     table.insert(
         c["Title Text Color"],
         function()
@@ -1655,7 +1655,7 @@ function t.CreateMain(H)
             local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
             local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
             local g = V .. "," .. W .. "," .. X
-            ad.Text = '<font color="rgb(' .. g .. ')">Sea Hub</font> ' .. getgenv().MainDesc
+            ad.Text = '<font color="rgb(' .. g .. ')">Silver Hub</font> ' .. getgenv().MainDesc
         end
     )
     local ar
@@ -1785,7 +1785,7 @@ function t.CreateMain(H)
     local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
     local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
     local g = V .. "," .. W .. "," .. X
-    ad.Text = '<font color="rgb(' .. g .. ')">Sea Hub</font> ' .. getgenv().MainDesc
+    ad.Text = '<font color="rgb(' .. g .. ')">Silver Hub</font> ' .. getgenv().MainDesc
     table.insert(
         c["Title Text Color"],
         function()
@@ -1793,7 +1793,7 @@ function t.CreateMain(H)
             local W = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[2])
             local X = tostring(u.Getcolor(getgenv().UIColor["Title Text Color"])[3])
             local g = V .. "," .. W .. "," .. X
-            ad.Text = '<font color="rgb(' .. g .. ')">Sea Hub</font> ' .. getgenv().MainDesc
+            ad.Text = '<font color="rgb(' .. g .. ')">Silver Hub</font> ' .. getgenv().MainDesc
         end
     )
     ak.Name = "SettionMain"
@@ -5405,7 +5405,7 @@ end
 return t end
 local rnd = tostring(math.random(1,100000))
 local Library = GetUi()
-local Main = Library.CreateMain({Title = 'Blox Fruit | Silver Hub', Desc = 'sea hub ui library 😘😘'})
+local Main = Library.CreateMain({Title = 'Blox Fruit | Silver Hub', Desc = 'Silver Hub ui library 😘😘'})
 local Page1 = Main.CreatePage({Page_Name = 'Main', Page_Title = 'Main Tab'})
 local Page2 = Main.CreatePage({Page_Name = 'Status', Page_Title = ''})
 local Section11 = Page1.CreateSection('Start kaitun')    
@@ -5572,98 +5572,10 @@ function EquipWeaponSword()
 	end
 end
 
-local User = Page:CreateSection({
-Name = "User",
-Side = "Left"
-})
-
-local PlayersName = User:AddLabel({
-Name = "Players Name : "..game.Players.LocalPlayer.Name
-})
 
 
-local HealthUser = User:AddLabel({
-Name = ""
-})
-
-function Health()
-HealthUser:Set("Health : " ..game.Players.LocalPlayer.Character.Humanoid.Health)
-end
-
-spawn(function()
-pcall(function()
-	while true do wait()
-		Health()
-	end
-end)
-end)
-
-local Race = User:AddLabel({
-Name = ""
-})
-
-function Races()
-Race:Set("Race : " ..game.Players.LocalPlayer.Data.Race.Value)
-end
-
-spawn(function()
-pcall(function()
-	while true do wait()
-		Races()
-	end
-end)
-end)
-
-local Level = User:AddLabel({
-Name = ""
-})
-
-function Levels()
-Level:Set("Level : " ..game.Players.LocalPlayer.Data.Level.Value)
-end
-
-spawn(function()
-pcall(function()
-	while true do wait()
-		Levels()
-	end
-end)
-end)
-
-local Kaitun = Page:CreateSection({
-	Name = "Mains",
-	Side = "Right"
-})
-
-local Level_S = Kaitun:AddLabel({
-	Name = ""
-})
-
-spawn(function()
-	pcall(function()
-		while true do wait()
-			if _G.Start_Kaitun then
-				Level_S:Set("Stats Farm : ✅")
-			else
-				Level_S:Set("Stats Farm : ❌")
-			end
-		end
-	end)
-end)
-
-local Level_SD = Kaitun:AddLabel({
-	Name = "Stats : "
-})
 
 
-local Level_SDD = Kaitun:AddLabel({
-	Name = "Stats Melee : "
-})
-
-
-local Fruit_Spawn = Kaitun:AddLabel({
-Name = "Stats Fruit Spawn : ❌"
-})
 
 spawn(function()
 pcall(function()
@@ -5672,8 +5584,7 @@ pcall(function()
 			for i,v in pairs(game:GetService("Workspace"):GetChildren()) do
 				if string.find(v.Name, "Fruit") then
 					if v:IsA("Tool") then
-						Fruit_Spawn:Set("Stats Fruit Spawn : ✅")
-						Level_SD:Set("Stats : Go To Fruit ✅")
+
 						_G.StartFarm = false
 						if (v.Handle.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 1500 then
 							Bypass(v.Handle.CFrame * CFrame.new(0,50,0))
@@ -5693,11 +5604,6 @@ pcall(function()
 						toposition(v.Handle.CFrame)
 						firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart,v.Handle,0)
 					end
-				elseif not string.find(v.Name, "Fruit") and not (_G.Auto_Bartilo_Quest or _G.AutoRengoku or _G.Start_Saber or _G.Start_Pole or _G.Auto_Yama) then
-					Fruit_Spawn:Set("Stats Fruit Spawn : ❌")
-					_G.StartFarm = true
-				else
-					Fruit_Spawn:Set("Stats Fruit Spawn : ❌")
 				end
 			end
 		end
@@ -5806,15 +5712,13 @@ spawn(function()
 		local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
 		pcall(function()
 			if _G.Start_Kaitun and _G.StartFarm then
-				if MyLevel < Level_Max then
-					Level_SD:Set("Stats : Farm ✅")
-				end
+
 				if _G.GoGat and (MyLevel >= 15 and MyLevel <= 300) then
 					if MyLevel >= 15 and MyLevel <= 300 then
 						Start_KaitunFast()
 					end
 				elseif MyLevel >= Level_Max then
-					Level_SD:Set("Stats : Farm Sword Mastery ✅")
+
 					for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventory")) do
 						if type(v) == "table" then
 							if v.Type == "Sword" then
@@ -5850,8 +5754,6 @@ spawn(function()
 										end
 									end
 									break
-								else
-									Level_SD:Set("Stats : Not Have Sword Mastery < 600 ❌")
 								end
 							end
 						end
@@ -6000,7 +5902,7 @@ end)
 _G.ChackPlayer = 0
 _G.ChackPlayer2 = _G.ChackPlayer
 function Start_KaitunFast()
-	Level_SD:Set("Stats : Farm Fast ✅")
+
 	local PlayersAll = game.Players:GetPlayers()
 	local PlayerLevel = game.Players.LocalPlayer.Data.Level.Value
 	local quest = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text
@@ -6100,7 +6002,7 @@ function Start_KaitunFast()
 	end)
 end
 
-local Time = Kaitun:AddLabel({
+--[[local Time = Kaitun:AddLabel({
 	Name = ""
 })
 
@@ -6120,78 +6022,11 @@ spawn(function()
 		end
 	end)
 end)
-
-local Race_Stast = Kaitun:AddLabel({
-	Name = "Race Stast V2 : "
-})
-
-spawn(function()
-	pcall(function()
-		while true do wait()
-			if game:GetService("Players").LocalPlayer.Data.Race:FindFirstChild("Evolved") then
-				Race_Stast:Set("Race Stast V2 : ✅")
-			else
-				Race_Stast:Set("Race Stast V2 : ❌")
-			end
-		end
-	end)
-end)
+]]
 
 
-local Melee = Page:CreateSection({
-	Name = "Fighting Style",
-	Side = "Left"
-})
 
-local Superhuman = Melee:AddLabel({
-Name = "❌ | Superhuman"
-})
 
-local DeathStep = Melee:AddLabel({
-Name = "❌ | Death Step"
-})
-
-local SharkmanKarate = Melee:AddLabel({
-Name = "❌ | Sharkman Karate"
-})
-
-local ElectricClaw = Melee:AddLabel({
-Name = "❌ | Electric Claw"
-})
-
-local DragonTalon = Melee:AddLabel({
-Name = "❌ | Dragon Talon"
-})
-
-local GodHuman = Melee:AddLabel({
-Name = "❌ | God Human"
-})
-
-task.spawn(
-function()
-	while task.wait() do
-		
-		if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySuperhuman", true) == 1 then
-			Superhuman:Set("✅ | Superhuman")
-		end
-		if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDeathStep", true) == 1 then
-			DeathStep:Set("✅ | Death Step")
-		end
-		if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuySharkmanKarate", true) == 1 then
-			SharkmanKarate:Set("✅ | Sharkman Karate")
-		end
-		if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyElectricClaw", true) == 1 then
-			ElectricClaw:Set("✅ | Electric Claw")
-		end
-		if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyDragonTalon", true) == 1 then
-			DragonTalon:Set("✅ | Dragon Talon")
-		end
-		if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BuyGodhuman", true) == 1 then
-			GodHuman:Set("✅ | God Human")
-		end
-	end
-end
-)
 
 function Hop()
 	local PlaceID = game.PlaceId
@@ -6255,18 +6090,6 @@ function Hop()
 	Teleport()
 end
 
-local Quests = Page:CreateSection({
-Name = "Quest",
-Side = "Left"
-})
-
-local BartiloQuest = Quests:AddLabel({
-	Name = "❌ | Bartilo"
-})
-
-local DonSwanQuest = Quests:AddLabel({
-	Name = "❌ | Dow Swan"
-})
 
 spawn(function()
 	while wait() do
@@ -6293,7 +6116,7 @@ spawn(function()
 							_G.StartFarm = false
 							_G.StoreFruit = false
 							if not game.Players.LocalPlayer.Backpack:FindFirstChild(FruitStore) then
-								Level_SD:Set("Stats : Open Flamingo Access ✅")
+
 								local args = {
 									[1] = "LoadFruit",
 									[2] = tostring(y)
@@ -6351,91 +6174,9 @@ spawn(function()
 	end
 end)
 
-local KillDonSwan = Quests:AddLabel({
-	Name = "❌ | Kill Don Sawn"
-})
 
-local Phoenix = Quests:AddLabel({
-	Name = "❌ | Phoenix Awaken"
-})
 
-local Kenhaki = Quests:AddLabel({
-	Name = "❌ | Quest Observation Haki V2"
-})
 
-task.spawn(
-function()
-	while task.wait() do
-		if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress", "Bartilo") == 3 then
-			BartiloQuest:Set("✅ | Bartilo Quest")
-		end
-		if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("GetUnlockables").FlamingoAccess == nil then
-		else
-			DonSwanQuest:Set("✅ | Don Swan Quest")
-		end
-		if game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("ZQuestProgress", "Check") == 1 then
-			KillDonSwan:Set("✅ | Kill Don Swan")
-		end
-		if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("SickScientist","Heal") == 1 then
-			Phoenix:Set("✅ | Phoenix Awaken")
-		end  
-		if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("CitizenQuestProgress","Citizen") == 3 then
-			Kenhaki:Set("✅ | Quest Observation Haki V2")
-		end            
-	end
-end
-)
-
-local Swordx = Page:CreateSection({
-Name = "Legendary Sword",
-Side = "Left"
-})
-
-local TrueTripleKatana = Swordx:AddLabel({
-Name = "❌ | True Triple Katana"
-})
-
-local Shisui = Swordx:AddLabel({
-Name = "❌ | Shisui"
-})
-
-local Wando = Swordx:AddLabel({
-Name = "❌ | Wando"
-})
-
-local Saddi = Swordx:AddLabel({
-Name = "❌ | Saddi"
-})
-
-task.spawn(
-function()
-	while task.wait() do
-		pcall(function()
-			if Check_Sword("Shisui") then
-				Shisui:Set("✅ | Shisui")
-			end
-			if Check_Sword("Saddi") then
-				Saddi:Set("✅ |: Saddi")
-			end
-			if Check_Sword("Wando") then
-				Wando:Set("✅ | Wando")
-			end
-			if Check_Sword("True Triple Katana") then
-				TrueTripleKatana:Set("✅ | True Triple Katana")
-			end
-		end)
-	end
-end
-)
-
-local SwordReal = Page:CreateSection({
-Name = "Sword",
-Side = "Left"
-})
-
-local Saber = SwordReal:AddLabel({
-	Name = "❌ | Saber"
-})
 
 spawn(function()
 	while task.wait() do
@@ -6451,7 +6192,7 @@ spawn(function()
 		pcall(function()
 			if _G.Start_Kaitun and _G.Start_Saber and game.Players.LocalPlayer.Data.Level.Value >= 200 and Check_Sword("Saber") == nil and W1 then
 				_G.StartFarm = false
-				Level_SD:Set("Stats : Saber")
+
 				game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 				if game:GetService("Workspace").Map.Jungle.Final.Part.Transparency == 0 then
 					if game:GetService("Workspace").Map.Jungle.QuestPlates.Door.Transparency == 0 then
@@ -6570,9 +6311,7 @@ spawn(function()
 	end
 end)
 
-local Rengoku = SwordReal:AddLabel({
-Name = "❌ | Rengoku"
-})
+
 
 local SetCFarmeBoneS = 1
 function GetBone_CFrame_Mon()
@@ -6599,7 +6338,7 @@ spawn(function()
 				if MyLevel >= 958 then
 					_G.StartFarm = false
 					_G.Grab_Fruit = false
-					Level_SD:Set("Stats : Rengoku")
+
 					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
 					if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Hidden Key") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Hidden Key") then
 						EquipWeapon("Hidden Key")
@@ -6613,7 +6352,7 @@ spawn(function()
 							if (v.Name == "Snow Lurker [Lv. 1375]" or v.Name == "Arctic Warrior [Lv. 1350]") and v.Humanoid.Health > 0 then
 								repeat task.wait()
 									_G.Grab_Fruit = false
-									Level_SD:Set("Stats : Rengoku")
+
 									EquipWeapon(_G.Select_Weapon)
 									v.HumanoidRootPart.CanCollide = false
 									v.HumanoidRootPart.Size = Vector3.new(50,50,50)
@@ -6653,9 +6392,6 @@ spawn(function()
 	end)
 end)
 
-local MidnightBlade = SwordReal:AddLabel({
-	Name = "❌ | Midnight Blade"
-})
 
 spawn(function()
 	while wait() do
@@ -6755,13 +6491,7 @@ spawn(function()
 	end
 end)
 
-local DragonTrident = SwordReal:AddLabel({
-	Name = "❌ | Dragon Trident"
-})
 
-local Yama = SwordReal:AddLabel({
-	Name = "❌ | Yama"
-})
 
 local Yama_All_Mon = {
 	["Mon Quest"] = {"Diablo [Lv. 1750]","Deandre [Lv. 1750]","Urban [Lv. 1750]"},
@@ -6834,9 +6564,7 @@ spawn(function()
 	end
 end)
 
-local Tushita = SwordReal:AddLabel({
-	Name = "❌ | Tushita"
-})
+
 
 spawn(function()
 	while wait() do
@@ -6908,88 +6636,10 @@ spawn(function()
 	end
 end)
 
-local BuddySword = SwordReal:AddLabel({
-Name = "❌ | Buddy Sword"
-})
-
-local Canvander = SwordReal:AddLabel({
-Name = "❌ | Canvander"
-})
-
-local SpikeyTrident = SwordReal:AddLabel({
-Name = "❌ | wSpikey Trident"
-})
-
-local HallowScythe = SwordReal:AddLabel({
-Name = "❌ | Hallow Scythe"
-})
-
-local DarkDagger = SwordReal:AddLabel({
-Name = "❌ | Dark Dagger"
-})
-
-local CursedDualKatana = SwordReal:AddLabel({
-Name = "❌ | Cursed Dual Katana"
-})
-
-task.spawn(
-function()
-	while task.wait() do
-		pcall(function()
-			if Check_Sword("Saber") then
-				Saber:Set("✅ | Saber")
-			end
-			if Check_Sword("Rengoku") then
-				Rengoku:Set("✅ | Rengoku")
-			end
-			if Check_Sword("Midnight Blade") then
-				MidnightBlade:Set("✅ | Midnight Blade")
-			end
-			if Check_Sword("Dragon Trident") then
-				DragonTrident:Set("✅ | Dragon Trident")
-			end
-			if Check_Sword("Yama") then
-				Yama:Set("✅ | Yama")
-			end
-			if Check_Sword("Buddy Sword") then
-				BuddySword:Set("✅ | Buddy Sword")
-			end
-			if Check_Sword("Canvander") then
-				Canvander:Set("✅ | Canvander")
-			end
-			if Check_Sword("Spikey Trident") then
-				SpikeyTrident:Set("✅ | Spikey Trident")
-			end
-			if Check_Sword("Hallow Scythe") then
-				HallowScythe:Set("✅ | Hallow Scythe")
-			end
-			if Check_Sword("Dark Dagger") then
-				DarkDagger:Set("✅ | Dark Dagger")
-			end
-			if Check_Sword("Tushita") then
-				Tushita:Set("✅ | Tushita")
-			end
-			if Check_Sword("Cursed Dual Katana") then
-				CursedDualKatana:Set("✅ | Cursed Dual Katana")
-			end
-		end)
-	end
-end
-)
 
 
-local Gun = Page:CreateSection({
-Name = "Gun",
-Side = "Right"
-})
 
-local Kabucha = Gun:AddLabel({
-Name = "❌ | Kabucha Gun"
-})
 
-local AcidumRifle = Gun:AddLabel({
-Name = "❌ | Acidum Rifle"
-})
 
 spawn(function()
 	while wait() do
@@ -7024,13 +6674,7 @@ spawn(function()
 	end
 end)
 
-local BizarreRifle = Gun:AddLabel({
-Name = "❌ | Bizarre Rifle"
-})
 
-local SoulGuitar = Gun:AddLabel({
-	Name = "❌ | Soul Guitar"
-})
 
 function getTrophies(Amount)
 	for i,v in pairs(game:GetService("Workspace").Map["Haunted Castle"].Trophies.Quest:GetChildren()) do
@@ -7460,128 +7104,9 @@ spawn(function()
 	end)
 end)
 
-local SerpentBow = Gun:AddLabel({
-Name = "❌ | Serpent Bow"
-})
 
-task.spawn(
-function()
-	while task.wait() do
-		pcall(
-			function()
-				for i, v in pairs(
-					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")
-				) do
-					if v.Name == "Kabucha" then
-						Kabucha:Set("✅ | Kabucha Gun")
-					end
-					if v.Name == "Acidum Rifle" then
-						AcidumRifle:Set("✅ | Acidum Rifle")
-					end
-					if v.Name == "Bizarre Rifle" then
-						BizarreRifle:Set("✅ | Bizarre Rifle")
-					end
-					if v.Name == "Soul Guitar" then
-						SoulGuitar:Set("✅ | Soul Guitar")
-					end
-					if v.Name == "Serpent Bow" then
-						SerpentBow:Set("✅ | Serpent Bow")
-					end                                                 
-				end
-			end
-		)
-	end
-end
-)
 
-local Accessory = Page:CreateSection({
-Name = "Accessory",
-Side = "Right"
-})
 
-local Dark_Coat = Accessory:AddLabel({
-Name = "❌ | Dark Coat"
-})
-
-local Ghoul_Mask = Accessory:AddLabel({
-Name = "❌ | Ghoul Mask"
-})
-
-local Swan_Glass = Accessory:AddLabel({
-Name = "❌ | Swan Glass"
-})
-
-local Pale_Scarf = Accessory:AddLabel({
-Name = "❌ | Pale Scarf"
-})
-
-local Valkyrie_Helm = Accessory:AddLabel({
-Name = "❌ | Valkyrie Helm"
-})
-
-local Usoap_Hat = Accessory:AddLabel({
-Name = "❌ | Usoap's Hat"
-})
-
-local Warrior_Helmet = Accessory:AddLabel({
-Name = "❌ | Warrior Helmet"
-})
-
-spawn(function()
-while task.wait() do
-	pcall(function()
-		for i,v in pairs(game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("getInventoryWeapons")) do
-			if v.Name == "Ghoul Mask" then
-				Ghoul_Mask:Set("✅ | Ghoul Mask")
-			end
-			if v.Name == "Swan Glasses" then
-				Swan_Glass:Set("✅ | Swan Glass")
-			end
-			if v.Name == "Pale Scarf" then
-				Pale_Scarf:Set("✅ | Pale Scarf")
-			end
-			if v.Name == "Valkyrie Helmet" then
-				Valkyrie_Helm:Set("✅ | Valkyrie Helmet")
-			end
-			if v.Name == "Usoap's Hat" then
-				Usoap_Hat:Set("✅ | Usoap's Hat")
-			end
-			if v.Name == "Warrior Helmet" then
-				Warrior_Helmet:Set("✅ | Warrior Helmet")
-			end                
-		end
-	end)
-end
-end)
-
-local Material = Page:CreateSection({
-	Name = "Material",
-	Side = "Right"
-})
-
-local Material1 = Material:AddLabel({
-	Name = "Ectoplasm : 0 Material"
-})
-
-spawn(function()
-	while task.wait() do
-		pcall(function()
-			Material1:Set("Ectoplasm : "..game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Ectoplasm","Check").." Material")
-		end)
-	end
-end)
-
-local Material2 = Material:AddLabel({
-	Name = "EliteHunter : 0 Mon"
-})
-
-spawn(function()
-	while task.wait() do
-		pcall(function()
-			Material2:Set("EliteHunter : "..game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("EliteHunter","Progress").." Mon")
-		end)
-	end
-end)
 
 _G.GoGat = true
 spawn(function()
@@ -7718,13 +7243,7 @@ spawn(function()
 		pcall(function()
 			if _G.Start_Kaitun and _G.Auto_Superhuman then
 
-				if _G.StartFarm == true then
-					for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-						if v.ToolTip == "Melee" then
-							Level_SDD:Set("Stats Meelee : \n "..v.Name.." ✅")
-						end
-					end
-				end
+
 
 				if game.Players.LocalPlayer.Backpack:FindFirstChild("Combat") or game.Players.LocalPlayer.Character:FindFirstChild("Combat") then
 					local args = {
@@ -7771,7 +7290,7 @@ spawn(function()
 								_G.Auto_Yama = false
 								_G.Auto_Dungeon_Superhuman = _G.Auto_Superhuman
 								
-								Level_SDD:Set("Stats Meelee : \n Farm Fragments ✅")
+
 
 								local FruitPrice = {}
 								local FruitStore = {}
@@ -8034,7 +7553,7 @@ spawn(function()
 							else
 								--game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
 								if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("ZQuestProgress","Check") ~= 0 then
-									Level_SD:Set("Auto Thire World Stats : \n Kill Don Swan Boss ✅")
+									
 									if game:GetService("Workspace").Enemies:FindFirstChild("Don Swan [Lv. 1000] [Boss]") or game.ReplicatedStorage:FindFirstChild("Don Swan [Lv. 1000] [Boss]") then
 										for i, v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 											if v.Name == "Don Swan [Lv. 1000] [Boss]" and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 then
@@ -8069,7 +7588,7 @@ spawn(function()
 												_G.StartFarm = false
 												wait(1.5)
 												if (v.Handle.CFrame.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude >= 3000 then
-													Level_SD:Set("Auto Thire World Stats : \n Go To Fruit ✅")
+													
 													Bypass(v.Handle.CFrame * CFrame.new(0,50,0))
 													toposition(v.Handle.CFrame)
 												else
@@ -8077,7 +7596,7 @@ spawn(function()
 												end
 											end
 										elseif not v:IsA("Tool") then
-											Level_SD:Set("Auto Thire World Stats : \n Wait Fruit Spawn ✅")
+											
 											game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
 											wait(0.1)
 										end
@@ -8131,7 +7650,7 @@ spawn(function()
 						if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 0 then
 							_G.Grab_Fruit = false
 							_G.StartFarm = false
-							Level_SD:Set("Stats : Bartilo Quest")
+						
 							if QuestC.Visible == true then
 								if game:GetService("Workspace").Enemies:FindFirstChild("Swan Pirate [Lv. 775]") then
 									for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -8176,7 +7695,7 @@ spawn(function()
 							end
 						elseif  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 1 then
 							_G.StartFarm = false
-							Level_SD:Set("Stats : Bartilo Quest")
+							
 							if game:GetService("Workspace").Enemies:FindFirstChild("Jeremy [Lv. 850] [Boss]") then
 								for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 									if v.Name == "Jeremy [Lv. 850] [Boss]" then
@@ -8209,7 +7728,7 @@ spawn(function()
 								end
 							end
 						elseif  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 2 then
-							Level_SD:Set("Stats : Bartilo Quest")
+							
 							repeat wait() toposition(CFrame.new(-1830.83972, 10.5578213, 1680.60229, 0.979988456, -2.02152783e-08, -0.199054286, 2.20792113e-08, 1, 7.1442483e-09, 0.199054286, -1.13962431e-08, 0.979988456)) until (CFrame.new(-1830.83972, 10.5578213, 1680.60229, 0.979988456, -2.02152783e-08, -0.199054286, 2.20792113e-08, 1, 7.1442483e-09, 0.199054286, -1.13962431e-08, 0.979988456).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1 or _G.Auto_Bartilo_Quest == false
 							wait(0.7)
 							game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Map.Dressrosa.BartiloPlates.Plate1.CFrame
@@ -8231,7 +7750,7 @@ spawn(function()
 						end
 					end
 				else
-					Level_SD:Set("Stats : Evo Race V2 ✅")
+					
 					if not game:GetService("Players").LocalPlayer.Data.Race:FindFirstChild("Evolved") then
 						if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Alchemist","1") == 0 then
 							toposition(CFrame.new(-2779.83521, 72.9661407, -3574.02002, -0.730484903, 6.39014104e-08, -0.68292886, 3.59963224e-08, 1, 5.50667032e-08, 0.68292886, 1.56424669e-08, -0.730484903))
@@ -8404,7 +7923,7 @@ while wait() do
 			if game.Players.LocalPlayer.Data.Level.Value >= 700 then
 				_G.StartFarm = false
 				game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("AbandonQuest")
-				Level_SD:Set("Stats : New World ✅")
+
 				if game.Workspace.Map.Ice.Door.CanCollide == true and game.Workspace.Map.Ice.Door.Transparency == 0 then
 					wait(.5)
 					game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("DressrosaQuestProgress","Detective")
@@ -8458,7 +7977,7 @@ local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
 			if game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 0 then
 				_G.StartFarm = false
 				_G.Grab_Fruit = false
-				Level_SD:Set("Stats : Bartilo Quest")
+
 				if QuestC.Visible == true then
 					if game:GetService("Workspace").Enemies:FindFirstChild("Swan Pirate [Lv. 775]") then
 						for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -8503,7 +8022,7 @@ local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
 				end
 			elseif  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 1 then
 				_G.StartFarm = false
-				Level_SD:Set("Stats : Bartilo Quest")
+
 				if game:GetService("Workspace").Enemies:FindFirstChild("Jeremy [Lv. 850] [Boss]") then
 					for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
 						if v.Name == "Jeremy [Lv. 850] [Boss]" then
@@ -8538,7 +8057,7 @@ local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
 				end
 			elseif  game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("BartiloQuestProgress","Bartilo") == 2 then
 				_G.StartFarm = false
-				Level_SD:Set("Stats : Bartilo Quest")
+
 				repeat wait() toposition(CFrame.new(-1830.83972, 10.5578213, 1680.60229, 0.979988456, -2.02152783e-08, -0.199054286, 2.20792113e-08, 1, 7.1442483e-09, 0.199054286, -1.13962431e-08, 0.979988456)) until (CFrame.new(-1830.83972, 10.5578213, 1680.60229, 0.979988456, -2.02152783e-08, -0.199054286, 2.20792113e-08, 1, 7.1442483e-09, 0.199054286, -1.13962431e-08, 0.979988456).Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 1 or _G.Auto_Bartilo_Quest == false
 				wait(0.7)
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = workspace.Map.Dressrosa.BartiloPlates.Plate1.CFrame
@@ -8561,7 +8080,6 @@ local QuestC = game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest
 				wait(2.5) 
 				_G.Auto_Bartilo_Quest = false
 				_G.Grab_Fruit = true
-				Level_SD:Set("Stats : Farm ✅")
 			end
 		end
 	end)
