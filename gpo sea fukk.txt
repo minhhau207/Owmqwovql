@@ -1,0 +1,3086 @@
+
+repeat wait(.25)
+until game:IsLoaded() and game.Players.LocalPlayer
+local plr = game.Players.LocalPlayer
+
+repeat wait(.25)
+until plr:FindFirstChild("Loaded")
+and plr.Loaded.Value == true
+and plr.Character
+and plr:FindFirstChild("Backpack")
+and plr.Character:FindFirstChild("Humanoid")
+and plr:FindFirstChild("PlayerGui")
+and plr.PlayerGui:FindFirstChild("Notifications")
+and #plr.Backpack:GetChildren() ~= 0 and pcall(function() 
+    return game.Players.LocalPlayer.Idled
+end)
+
+local tvk = function(f) 
+	return f()
+end
+local spawn = function(func,...)
+    return coroutine.resume(coroutine.create(func),...)
+end
+
+
+-- if not getgenv().SecureEnv then 
+--     local SecureBindable
+--     local old
+--     old = hookmetamethod(game,"__index",function(...) 
+--         if not SecureBindable and tostring(getcallingscript()) == "PlayerScriptsLoader" then 
+--             setidentity(8)
+--             SecureBindable = Instance.new("BindableFunction")
+--             SecureBindable.OnInvoke = function(f) 
+--                 return f()
+--             end
+--         end
+--         return old(...)
+--     end)
+--     repeat wait() until SecureBindable
+--     getgenv().SecureEnv = function(f) 
+--         return SecureBindable:Invoke(f)
+--     end
+-- end
+if not script_key then
+	LPH_NO_VIRTUALIZE = function(tvkretard) return tvkretard end
+end
+LPH_NO_VIRTUALIZE(function() 
+	local plr = game.Players.LocalPlayer
+	if not getgenv().GetService then 
+		local Services = {}
+		local GameService = {}
+	
+		local old
+		old = hookfunction(game.GetService,function(...) 
+			if not checkcaller() then 
+				local Result = old(...)
+				if Result then 
+					GameService[b] = Result
+					Services[b] = Result
+				end
+				return Result
+			end
+			return old(...)
+		end)
+		local old
+		old = hookfunction(game.FindService,function(...) 
+			if not checkcaller() then 
+				if GameService[b] then 
+					return GameService[b]
+				end
+				if Services[b] then 
+					return nil
+				end
+				return old(...)
+			end
+			return old(...)
+		end)
+	
+		local old
+		old = hookmetamethod(game,"__namecall",function(...) 
+			local a,b = ...
+			if getnamecallmethod() == "GetService" and not checkcaller() then
+				local Result = old(...)
+				if Result then 
+					GameService[b] = Result
+					Services[b] = Result
+				end
+				return Result
+			elseif getnamecallmethod() == "FindService" and not checkcaller() then
+				if GameService[b] then 
+					return GameService[b]
+				end
+				if Services[b] then 
+					return nil
+				end
+				return old(...)
+			end
+			return old(...)
+		end)
+		getgenv().GetService = function(service) 
+			if Services[service] then return Services[service] end
+		
+			if game:FindService(service) then
+				Services[service] =  game:FindService(service) 
+				return Services[service]
+			end
+			Services[service] = game:GetService(service)
+			return Services[service]
+		end
+		local name = plr.Name
+		-- function hup()
+		-- 	local old
+		-- 	old = hookmetamethod(game,"__namecall",function(...) 
+		-- 		if checkcaller() then 
+		-- 			if getnamecallmethod() == "WaitForChild" then 
+		-- 				if plr.Character then 
+		-- 					local Self,Key,Time = ...
+		-- 					if Self == plr.Character then 
+		-- 						if plr.Character:FindFirstChild(Key) then 
+		-- 							return plr.Character:FindFirstChild(Key)
+		-- 						else
+		-- 							repeat wait() until plr.Character and plr.Character:FindFirstChild(Key)
+		-- 							return plr.Character:FindFirstChild(Key)
+		-- 						end
+		-- 					end
+		-- 				end
+		-- 			end
+		-- 		end
+		-- 		return old(...)
+		-- 	end)
+		
+		-- 	local old
+		-- 	old = hookmetamethod(game,"__index",function(...) 
+		-- 		local self,key = ...
+		-- 		if checkcaller() then 
+		-- 			if tostring(self) == name and key == "HumanoidRootPart" then 
+		-- 				return self:WaitForChild("HumanoidRootPart")
+		-- 			end
+		-- 		end
+		-- 		return old(...)
+		-- 	end)
+		-- end
+		-- hup()
+	end
+end)()
+local ScriptContext = game:GetService("ScriptContext")
+for k,v in pairs(getconnections(ScriptContext.Error)) do 
+    v:Disable()
+end
+local plr = game.Players.LocalPlayer
+
+local ScriptContext = game:GetService("ScriptContext")
+for k,v in pairs(getconnections(ScriptContext.Error)) do 
+    v:Disable()
+end
+function StringToVector3(str) 
+    return Vector3.new(unpack(string.split(str, ",")))
+end
+print(StringToVector3("-6606, 170, 1997"))
+function Deserialize(tabl) 
+    local out = {}
+    for k,v in pairs(tabl) do 
+        local tvk = {}
+        for k,v in pairs(v) do 
+            table.insert(tvk,StringToVector3(v))
+        end
+        out[StringToVector3(k)] = tvk
+    end
+    return out
+end
+local PathOtherIsland= [[{"-6606, 170, 1997":["-6614, 164, 2000","-6564, 170, 1994","-6606, 170, 1951"],"-1503, 5, 1343":["-1305, 11, 1239","-1651, 10, 1319"],"-6316, 2, 2057":["-6316, 2, 2001","-6325, 2, 2120"],"-6423, 2, 2214":["-6465, 2, 2222","-6369, 2, 2205"],"-6633, 96, 1921":["-6639, 96, 1891","-6661, 96, 1996"],"-6626, 119, 2092":["-6627, 119, 2056"],"-6614, 164, 2000":["-6629, 119, 2002","-6606, 170, 1997"],"-6564, 170, 1994":["-6566, 170, 1961","-6606, 170, 1997"],"-6646, 2, 2231":["-6734, 2, 2227","-6571, 2, 2229"],"-1315, 11, 1114":["-1379, 10, 1118","-1275, 11, 1163","-1309, 10, 1168"],"-6571, 2, 2229":["-6465, 2, 2222","-6646, 2, 2231"],"-6316, 2, 2001":["-6322, 2, 1949","-6316, 2, 2057"],"-6686, 51, 1885":["-6670, 94, 1888","-6683, 31, 1865"],"-1214, 10, 1092":["-1228, 11, 1151","-1230, 6, 1037"],"-6728, 8, 1842":["-6766, 8, 1844","-6686, 8, 1819"],"-6844, 2, 1815":["-6855, 2, 1929","-6768, 2, 1801"],"-6852, 2, 2134":["-6854, 2, 2016","-6849, 2, 2213"],"-6517, 166, 1930":["-6518, 151, 1912","-6540, 170, 1944"],"-6337, 2, 1837":["-6330, 2, 1890","-6349, 2, 1777"],"-1132, 4, 1159":["-1228, 11, 1151"],"-6767, 2, 1823":["-6768, 2, 1801","-6766, 8, 1844"],"-1723, 10, 1058":["-1727, 10, 1179","-1704, 10, 972"],"-6670, 94, 1888":["-6639, 96, 1891","-6686, 51, 1885"],"-1727, 10, 1179":["-1732, 10, 1294","-1723, 10, 1058"],"-6325, 2, 2120":["-6334, 2, 2166","-6316, 2, 2057"],"-1230, 6, 1037":["-1287, 4, 1007","-1214, 10, 1092"],"-6639, 96, 1891":["-6633, 96, 1921","-6670, 94, 1888","-6583, 96, 1908"],"-6683, 31, 1865":["-6686, 8, 1819","-6686, 51, 1885"],"-1381, 10, 1181":["-1379, 10, 1118","-1324, 10, 1195"],"-1305, 11, 1239":["-1503, 5, 1343","-1219, 11, 1226"],"-6606, 170, 1951":["-6566, 170, 1961","-6540, 170, 1944","-6606, 170, 1997"],"-6855, 2, 1929":["-6854, 2, 2016","-6844, 2, 1815"],"-1469, 2, 946":["-1558, 3, 941","-1414, 1, 967"],"-1558, 3, 941":["-1469, 2, 946","-1626, 9, 972"],"-6349, 2, 1777":["-6399, 2, 1777","-6337, 2, 1837"],"-6768, 2, 1801":["-6844, 2, 1815","-6668, 2, 1781","-6767, 2, 1823"],"-1228, 11, 1151":["-1214, 10, 1092","-1132, 4, 1159","-1219, 11, 1226","-1275, 11, 1163"],"-6734, 2, 2227":["-6804, 2, 2216","-6646, 2, 2231"],"-6518, 151, 1912":["-6517, 166, 1930","-6569, 151, 1912"],"-1147, 4, 1221":["-1219, 11, 1226"],"-1219, 11, 1226":["-1228, 11, 1151","-1147, 4, 1221","-1309, 10, 1168","-1305, 11, 1239"],"-6668, 2, 1781":["-6768, 2, 1801","-6686, 8, 1819","-6584, 2, 1774"],"-6584, 2, 1774":["-6668, 2, 1781","-6520, 2, 1776"],"-6465, 2, 2222":["-6423, 2, 2214","-6571, 2, 2229"],"-6322, 2, 1949":["-6330, 2, 1890","-6316, 2, 2001"],"-6658, 78, 2086":["-6661, 96, 1996"],"-6804, 2, 2216":["-6734, 2, 2227","-6849, 2, 2213"],"-1651, 10, 1319":["-1503, 5, 1343","-1732, 10, 1294"],"-6849, 2, 2213":["-6804, 2, 2216","-6852, 2, 2134"],"-6540, 170, 1944":["-6517, 166, 1930","-6566, 170, 1961","-6606, 170, 1951"],"-6399, 2, 1777":["-6459, 2, 1776","-6349, 2, 1777"],"-1626, 9, 972":["-1704, 10, 972","-1558, 3, 941"],"-6766, 8, 1844":["-6728, 8, 1842","-6767, 2, 1823"],"-6520, 2, 1776":["-6459, 2, 1776","-6584, 2, 1774"],"-6661, 96, 1996":["-6658, 78, 2086","-6633, 96, 1921","-6638, 96, 1991"],"-6566, 170, 1961":["-6540, 170, 1944","-6564, 170, 1994","-6606, 170, 1951"],"-1309, 10, 1168":["-1324, 10, 1195","-1275, 11, 1163","-1315, 11, 1114","-1219, 11, 1226"],"-1414, 1, 967":["-1469, 2, 946","-1357, 2, 1000"],"-6638, 96, 1991":["-6629, 119, 2002","-6661, 96, 1996"],"-6330, 2, 1890":["-6322, 2, 1949","-6337, 2, 1837"],"-6629, 119, 2002":["-6627, 119, 2056","-6614, 164, 2000","-6638, 96, 1991"],"-6459, 2, 1776":["-6399, 2, 1777","-6520, 2, 1776"],"-6583, 96, 1908":["-6639, 96, 1891","-6569, 151, 1912"],"-1357, 2, 1000":["-1287, 4, 1007","-1414, 1, 967"],"-6627, 119, 2056":["-6629, 119, 2002","-6626, 119, 2092"],"-6369, 2, 2205":["-6334, 2, 2166","-6423, 2, 2214"],"-1379, 10, 1118":["-1315, 11, 1114","-1381, 10, 1181"],"-1324, 10, 1195":["-1309, 10, 1168","-1381, 10, 1181"],"-6686, 8, 1819":["-6683, 31, 1865","-6668, 2, 1781","-6728, 8, 1842"],"-1704, 10, 972":["-1723, 10, 1058","-1626, 9, 972"],"-1732, 10, 1294":["-1727, 10, 1179","-1651, 10, 1319"],"-6854, 2, 2016":["-6855, 2, 1929","-6852, 2, 2134"],"-6334, 2, 2166":["-6325, 2, 2120","-6369, 2, 2205"],"-1287, 4, 1007":["-1230, 6, 1037","-1357, 2, 1000"],"-1275, 11, 1163":["-1228, 11, 1151","-1315, 11, 1114","-1309, 10, 1168"],"-6569, 151, 1912":["-6518, 151, 1912","-6583, 96, 1908"]}]]
+local path = [[
+{"1092, -97, 711":[],"1125, 58, 1429":["1095, 60, 1430","1184, 58, 1429"],"878, 8, 1194":["908, 8, 1194","879, 9, 1221","858, 8, 1168","843, 8, 1219"],"996, 9, 1042":["958, 8, 1053","962, 8, 1035","997, 9, 1022","976, 9, 1075","1027, 9, 1069"],"1192, 58, 1333":["1192, 58, 1207","1192, 63, 1429"],"1175, 10, 1242":["1166, 9, 1317","1119, 9, 1200"],"811, 9, 1339":["842, 8, 1308","826, 9, 1364"],"979, 9, 965":["964, 8, 983","1000, 9, 962","988, 7, 935","962, 7, 935"],"878, 8, 1107":["927, 9, 1022","910, 8, 1107","853, 8, 1128","847, 8, 1101"],"920, 24, 1462":["919, 8, 1410","923, 45, 1512"],"905, 8, 1373":["889, 8, 1337","950, 8, 1325","947, 9, 1386","919, 8, 1410","870, 8, 1367"],"992, 9, 1222":["989, 9, 1248","1002, 9, 1264","988, 8, 1198","1014, 10, 1231"],"1009, 9, 1179":["1052, 8, 1209","1008, 9, 1159","988, 8, 1198","1015, 8, 1201"],"1064, 8, 1099":["1070, 8, 1148","1060, 8, 1153","1028, 8, 1105","1027, 9, 1069"],"1096, 9, 943":["1101, 9, 958","1048, 9, 937","1114, 9, 942"],"1121, 58, 1026":["1120, 58, 1084","1121, 63, 1017"],"1028, 8, 1105":["1064, 8, 1099","985, 8, 1105","1027, 9, 1069","976, 9, 1075","1014, 9, 1120"],"964, 8, 983":["979, 9, 965","929, 7, 932","962, 8, 1035","976, 9, 1075","962, 7, 935"],"947, 9, 1386":["905, 8, 1373","950, 8, 1325","919, 8, 1410","960, 9, 1370"],"1011, 60, 1436":["1011, 59, 1476","1058, 59, 1429"],"1166, 9, 1317":["1175, 10, 1242","1109, 10, 1310"],"908, 8, 1194":["937, 8, 1194","879, 9, 1221","910, 8, 1107","906, 9, 1247","895, 9, 1289","878, 8, 1194"],"976, 9, 1075":["958, 8, 1053","985, 8, 1105","964, 8, 983","1028, 8, 1105","962, 8, 1035","951, 8, 1078","965, 8, 1130","996, 9, 1042","1027, 9, 1069"],"962, 8, 1035":["964, 8, 983","958, 8, 1053","997, 9, 1022","927, 9, 1022","965, 8, 1130","996, 9, 1042","976, 9, 1075"],"1062, 56, 1347":["1026, 56, 1352","1061, 59, 1390"],"930, 58, 1016":["927, 9, 1022","996, 58, 1016","908, 94, 1017"],"1095, 60, 1430":["1061, 59, 1390","1058, 59, 1429","1125, 58, 1429"],"858, 8, 1168":["878, 8, 1194","853, 8, 1128","843, 8, 1219"],"950, 8, 1325":["905, 8, 1373","895, 9, 1289","976, 9, 1331","919, 8, 1410","889, 8, 1337","947, 9, 1386","995, 9, 1299","1002, 9, 1264","865, 9, 1294"],"960, 45, 1497":["961, 45, 1476","962, 45, 1516","943, 45, 1517"],"1061, 59, 1390":["1058, 59, 1429","1062, 56, 1347","1095, 60, 1430"],"853, 8, 1128":["878, 8, 1107","858, 8, 1168","847, 8, 1101"],"1070, 8, 1184":["1052, 8, 1209","1107, 9, 1170","1086, 9, 1206","1015, 8, 1201","1061, 9, 1234","1070, 8, 1148","1060, 8, 1153"],"1101, 9, 958":["1114, 9, 942","1048, 9, 937","1096, 9, 943","1000, 9, 962"],"959, 46, 1452":["961, 45, 1476"],"1027, 9, 1069":["1064, 8, 1099","996, 9, 1042","1028, 8, 1105","976, 9, 1075"],"843, 8, 1219":["841, 8, 1253","865, 9, 1253","878, 8, 1194","879, 9, 1221","858, 8, 1168"],"961, 45, 1476":["1011, 59, 1476","960, 45, 1497","959, 46, 1452"],"1017, 9, 1125":["1019, 9, 1136","1014, 9, 1120"],"1050, 9, 1262":["1002, 9, 1264","1061, 9, 1234","1070, 9, 1292","1027, 9, 1309"],"889, 89, 1018":["908, 94, 1017"],"1027, 9, 1309":["976, 9, 1331","1050, 9, 1262","1054, 9, 1326","995, 9, 1299"],"989, 9, 1248":["906, 9, 1247","992, 9, 1222","1002, 9, 1264"],"1129, 58, 1095":["1121, 63, 1095","1170, 63, 1096"],"877, 9, 1423":["919, 8, 1410"],"1058, 59, 1429":["1011, 60, 1436","1095, 60, 1430","1061, 59, 1390"],"1038, 89, 1019":["1023, 89, 1018","1045, 58, 1016"],"1016, 58, 1017":["1023, 89, 1018","996, 58, 1016"],"997, 9, 1022":["996, 9, 1042","996, 58, 1016","962, 8, 1035"],"986, 9, 1167":["1008, 9, 1159","966, 8, 1178","966, 8, 1159","965, 8, 1130"],"1071, 58, 1017":["1121, 63, 1017","1045, 58, 1016"],"1192, 63, 1194":["1178, 58, 1195","1192, 58, 1207"],"999, 9, 1346":["976, 9, 1331","1003, 56, 1348"],"1054, 9, 1326":["1070, 9, 1292","1027, 9, 1309"],"1178, 58, 1195":["1192, 63, 1194","1170, 63, 1194"],"929, 7, 932":["964, 8, 983","927, 7, 875","962, 7, 935"],"996, 58, 1016":["1016, 58, 1017","997, 9, 1022","930, 58, 1016"],"985, 8, 1105":["944, 8, 1107","1028, 8, 1105","965, 8, 1130","1014, 9, 1120","976, 9, 1075"],"962, 45, 1516":["960, 45, 1497","943, 45, 1517"],"1170, 63, 1096":["1170, 58, 1105","1129, 58, 1095"],"1011, 22, 1147":["1014, 9, 1120","999, 22, 1147"],"1127, 11, 1013":[],"1003, 56, 1348":["1003, 56, 1353","999, 9, 1346"],"988, 8, 1198":["966, 8, 1178","1015, 8, 1201","992, 9, 1222","964, 8, 1195","1009, 9, 1179"],"1192, 58, 1207":["1192, 63, 1194","1192, 58, 1333"],"964, 8, 1195":["937, 8, 1194","988, 8, 1198","966, 8, 1178"],"1192, 63, 1429":["1184, 58, 1429","1192, 58, 1333"],"1003, 56, 1353":["1026, 56, 1352","1003, 56, 1348"],"1003, 10, 1133":["987, 10, 1131"],"1028, 9, 932":["1048, 9, 937","988, 7, 935","1000, 9, 962"],"960, 9, 1370":["976, 9, 1331","947, 9, 1386"],"910, 8, 1107":["908, 8, 1194","944, 8, 1107","927, 9, 1022","878, 8, 1107"],"1048, 9, 937":["1101, 9, 958","1028, 9, 932","1096, 9, 943","1000, 9, 962"],"985, 22, 1148":["987, 10, 1131","999, 22, 1147"],"958, 8, 1053":["996, 9, 1042","962, 8, 1035","951, 8, 1078","927, 9, 1022","976, 9, 1075"],"923, 45, 1512":["943, 45, 1517","920, 24, 1462"],"1019, 9, 1136":["1020, 9, 1152","1017, 9, 1125"],"906, 9, 1247":["989, 9, 1248","895, 9, 1289","908, 8, 1194"],"1052, 8, 1209":["1014, 10, 1231","1070, 8, 1184","1015, 8, 1201","1061, 9, 1234","1002, 9, 1264","1009, 9, 1179"],"1014, 9, 1120":["1011, 22, 1147","1017, 9, 1125","1028, 8, 1105","985, 8, 1105"],"1107, 9, 1170":["1086, 9, 1206","1070, 8, 1148","1070, 8, 1184"],"1184, 58, 1429":["1192, 63, 1429","1125, 58, 1429"],"10552, 49, -1923":[],"865, 9, 1294":["841, 8, 1253","950, 8, 1325","875, 8, 1316","842, 8, 1308"],"995, 9, 1299":["950, 8, 1325","895, 9, 1289","976, 9, 1331","1002, 9, 1264","1027, 9, 1309"],"944, 8, 1107":["910, 8, 1107","985, 8, 1105","927, 9, 1022","965, 8, 1130","951, 8, 1078"],"966, 8, 1178":["937, 8, 1194","988, 8, 1198","986, 9, 1167","964, 8, 1195","966, 8, 1159"],"937, 8, 1194":["908, 8, 1194","964, 8, 1195","966, 8, 1178","966, 8, 1159"],"895, 9, 1289":["908, 8, 1194","865, 9, 1253","875, 8, 1316","906, 9, 1247","995, 9, 1299","950, 8, 1325"],"1070, 9, 1292":["1109, 10, 1310","1050, 9, 1262","1054, 9, 1326"],"908, 94, 1017":["930, 58, 1016","889, 89, 1018"],"1015, 8, 1201":["1052, 8, 1209","988, 8, 1198","1070, 8, 1184","1014, 10, 1231","1009, 9, 1179"],"962, 7, 935":["964, 8, 983","988, 7, 935","929, 7, 932","979, 9, 965"],"1061, 9, 1234":["1052, 8, 1209","1070, 8, 1184","1050, 9, 1262","1002, 9, 1264","1086, 9, 1206"],"1011, 59, 1476":["961, 45, 1476","1011, 60, 1436"],"1092, -97, 713":[],"1014, 10, 1231":["1052, 8, 1209","992, 9, 1222","1002, 9, 1264","1015, 8, 1201"],"999, 22, 1147":["985, 22, 1148","1011, 22, 1147"],"6525, 2874, 8999":[],"1109, 10, 1310":["1166, 9, 1317","1070, 9, 1292"],"1020, 9, 1152":["1060, 8, 1153","1019, 9, 1136","1011, 9, 1151"],"1114, 9, 942":["1096, 9, 943","1101, 9, 958"],"943, 45, 1517":["923, 45, 1512","962, 45, 1516","960, 45, 1497"],"875, 8, 1316":["895, 9, 1289","865, 9, 1294"],"867, 8, 1346":["889, 8, 1337","870, 8, 1367","842, 8, 1308"],"1000, 9, 962":["979, 9, 965","988, 7, 935","1048, 9, 937","1028, 9, 932","1101, 9, 958"],"965, 8, 1130":["944, 8, 1107","985, 8, 1105","962, 8, 1035","986, 9, 1167","966, 8, 1159","951, 8, 1078","976, 9, 1075"],"1121, 63, 1095":["1120, 58, 1084","1129, 58, 1095"],"889, 8, 1337":["905, 8, 1373","950, 8, 1325","867, 8, 1346","870, 8, 1367"],"842, 8, 1308":["841, 8, 1253","811, 9, 1339","867, 8, 1346","865, 9, 1294"],"847, 8, 1101":["878, 8, 1107","853, 8, 1128"],"927, 9, 1022":["878, 8, 1107","958, 8, 1053","910, 8, 1107","962, 8, 1035","951, 8, 1078","944, 8, 1107","930, 58, 1016"],"1002, 9, 1264":["989, 9, 1248","950, 8, 1325","995, 9, 1299","1061, 9, 1234","1014, 10, 1231","1050, 9, 1262","1052, 8, 1209","992, 9, 1222"],"826, 9, 1364":["870, 8, 1367","811, 9, 1339"],"966, 8, 1159":["986, 9, 1167","965, 8, 1130","966, 8, 1178","937, 8, 1194"],"1086, 9, 1206":["1119, 9, 1200","1107, 9, 1170","1070, 8, 1184","1061, 9, 1234","1070, 8, 1148"],"927, 7, 875":["929, 7, 932"],"987, 10, 1131":["985, 22, 1148","1003, 10, 1133"],"988, 7, 935":["979, 9, 965","1000, 9, 962","986, 7, 890","1028, 9, 932","962, 7, 935"],"1008, 9, 1159":["986, 9, 1167","1009, 9, 1179","1011, 9, 1151"],"879, 9, 1221":["908, 8, 1194","865, 9, 1253","878, 8, 1194","843, 8, 1219"],"1170, 58, 1105":["1169, 58, 1166","1170, 63, 1096"],"1119, 9, 1200":["1175, 10, 1242","1086, 9, 1206"],"1028, 56, 1381":["1026, 56, 1352"],"951, 8, 1078":["944, 8, 1107","958, 8, 1053","927, 9, 1022","965, 8, 1130","976, 9, 1075"],"786, -97, 643":[],"986, 7, 890":["988, 7, 935"],"1060, 8, 1153":["1070, 8, 1148","1064, 8, 1099","1020, 9, 1152","1070, 8, 1184"],"1070, 8, 1148":["1064, 8, 1099","1107, 9, 1170","1070, 8, 1184","1086, 9, 1206","1060, 8, 1153"],"1045, 58, 1016":["1071, 58, 1017","1038, 89, 1019"],"841, 8, 1253":["865, 9, 1294","865, 9, 1253","843, 8, 1219","842, 8, 1308"],"870, 8, 1367":["905, 8, 1373","867, 8, 1346","826, 9, 1364","919, 8, 1410","889, 8, 1337"],"919, 8, 1410":["905, 8, 1373","950, 8, 1325","947, 9, 1386","877, 9, 1423","870, 8, 1367","920, 24, 1462"],"1169, 58, 1166":["1170, 58, 1105","1170, 63, 1194"],"1121, 63, 1017":["1071, 58, 1017","1121, 58, 1026"],"1011, 9, 1151":["1020, 9, 1152","1008, 9, 1159"],"1120, 58, 1084":["1121, 63, 1095","1121, 58, 1026"],"976, 9, 1331":["999, 9, 1346","960, 9, 1370","995, 9, 1299","950, 8, 1325","1027, 9, 1309"],"1023, 89, 1018":["1016, 58, 1017","1038, 89, 1019"],"1026, 56, 1352":["1003, 56, 1353","1062, 56, 1347","1028, 56, 1381"],"1170, 63, 1194":["1178, 58, 1195","1169, 58, 1166"],"865, 9, 1253":["841, 8, 1253","879, 9, 1221","895, 9, 1289","843, 8, 1219"]}
+]]
+-- huhu cai nay la cave ma huhuhuhu
+local FishManPath = [[{"5626, -94, -16523":["5640, -94, -16526","5623, -94, -16560"],"5781, -121, -16644":[],"5667, -78, -16607":["5667, -94, -16603","5667, -94, -16611"],"5613, -94, -16504":["5644, -94, -16505","5615, -77, -16505"],"5847, -159, -16713":[],"5667, -94, -16611":["5637, -94, -16610","5667, -78, -16607"],"5618, -94, -16495":["5633, -94, -16496"],"5615, -77, -16505":["5613, -94, -16504","5611, -94, -16512"],"5640, -94, -16526":["5638, -94, -16514","5626, -94, -16523"],"5517, 116, -16407":[],"5694, -94, -16590":["5693, -94, -16581","5667, -94, -16590"],"5633, -94, -16496":["5642, -94, -16496","5618, -94, -16495"],"5644, -94, -16505":["5642, -94, -16496","5613, -94, -16504"],"5623, -94, -16560":["5626, -94, -16523","5658, -94, -16560"],"5658, -94, -16560":["5623, -94, -16560","5658, -94, -16583"],"5683, -94, -16497":["5683, -94, -16486","5662, -94, -16496"],"5667, -94, -16603":["5667, -94, -16590","5667, -78, -16607"],"5683, -94, -16486":["5683, -94, -16497"],"5611, -94, -16512":["5638, -94, -16514","5615, -77, -16505"],"5637, -94, -16610":["5667, -94, -16611"],"5658, -94, -16583":["5658, -94, -16560","5693, -94, -16581"],"5667, -94, -16590":["5694, -94, -16590","5667, -94, -16603"],"5642, -94, -16496":["5633, -94, -16496","5644, -94, -16505","5662, -94, -16496"],"5662, -94, -16496":["5642, -94, -16496","5683, -94, -16497"],"5638, -94, -16514":["5640, -94, -16526","5611, -94, -16512"],"5201, -70, -16933":[],"5693, -94, -16581":["5694, -94, -16590","5658, -94, -16583"]}]]
+local PathODuoiNuoc = [[{"8346, -2132, -17047":["8311, -2132, -17045","8341, -2132, -17079"],"8045, -2156, -16931":["8045, -2190, -16925","8046, -2152, -16946"],"7853, -2153, -17158":["7851, -2151, -17191","7945, -2153, -17152","7820, -2176, -17168","7858, -2151, -17146"],"7728, -2163, -17137":["7695, -2167, -17137","7797, -2163, -17131"],"8560, -2138, -17087":["8476, -2125, -17073","8555, -2140, -17129"],"7858, -2151, -17146":["7853, -2153, -17158","7827, -2159, -17139"],"8007, -2153, -17149":["8005, -2153, -17108","7945, -2153, -17152"],"7978, -2152, -17076":["8002, -2153, -17027","8005, -2153, -17108"],"8009, -2152, -16996":["8002, -2153, -17027","7985, -2152, -16993","8009, -2156, -16971"],"8273, -2139, -17044":["8225, -2139, -17050","8311, -2132, -17045"],"7726, -2167, -17206":["7737, -2175, -17218","7792, -2176, -17185","7705, -2167, -17187"],"8002, -2153, -17027":["8005, -2153, -17108","7985, -2152, -16993","7978, -2152, -17076","7971, -2152, -17010","8009, -2152, -16996"],"8555, -2140, -17129":["8547, -2140, -17161","8560, -2138, -17087"],"8048, -2190, -16903":["8045, -2190, -16925","8049, -2193, -16889"],"7705, -2167, -17187":["7726, -2167, -17206","7695, -2167, -17137"],"8385, -2132, -17074":["8424, -2125, -17073","8341, -2132, -17079"],"7820, -2176, -17168":["7853, -2153, -17158","7792, -2176, -17185"],"8009, -2156, -16945":["8009, -2156, -16971","8046, -2152, -16946"],"8334, -2141, -17155":["8215, -2141, -17143","8547, -2140, -17161"],"8052, -2193, -16846":["8055, -2193, -16797","8021, -2193, -16821","8049, -2193, -16889"],"7792, -2176, -17185":["7737, -2175, -17218","7820, -2176, -17168","7726, -2167, -17206"],"7971, -2152, -17010":["8002, -2153, -17027","8005, -2153, -17108","7985, -2152, -16993"],"8119, -2148, -17143":["8113, -2148, -17101"],"8476, -2125, -17073":["8424, -2125, -17073","8560, -2138, -17087"],"8229, -2141, -17085":["8194, -2141, -17089","8215, -2141, -17143","8225, -2139, -17050"],"8424, -2125, -17073":["8385, -2132, -17074","8476, -2125, -17073"],"7829, -2143, -17312":["7835, -2143, -17254"],"8547, -2140, -17161":["8555, -2140, -17129","8334, -2141, -17155"],"8113, -2148, -17101":["8165, -2148, -17094","8119, -2148, -17143","8082, -2148, -17105"],"8225, -2139, -17050":["8273, -2139, -17044","8229, -2141, -17085"],"7797, -2163, -17131":["7728, -2163, -17137","7827, -2159, -17139"],"8341, -2132, -17079":["8385, -2132, -17074","8311, -2132, -17045","8346, -2132, -17047"],"7835, -2143, -17254":["7836, -2143, -17212","7829, -2143, -17312"],"7737, -2175, -17218":["7726, -2167, -17206","7792, -2176, -17185","7732, -2174, -17223"],"8021, -2193, -16821":["8055, -2193, -16797","8052, -2193, -16846"],"7827, -2159, -17139":["7797, -2163, -17131","7858, -2151, -17146"],"7732, -2174, -17223":["7737, -2175, -17218"],"7836, -2143, -17212":["7851, -2151, -17191","7835, -2143, -17254"],"8046, -2152, -16946":["8009, -2156, -16945","8045, -2156, -16931"],"8049, -2193, -16889":["8048, -2190, -16903","8052, -2193, -16846"],"8045, -2190, -16925":["8048, -2190, -16903","8045, -2156, -16931"],"8005, -2153, -17108":["8002, -2153, -17027","8082, -2148, -17105","7978, -2152, -17076","7971, -2152, -17010","8007, -2153, -17149"],"8194, -2141, -17089":["8215, -2141, -17143","8229, -2141, -17085","8165, -2148, -17094"],"7985, -2152, -16993":["8002, -2153, -17027","7971, -2152, -17010","8009, -2152, -16996"],"7945, -2153, -17152":["7853, -2153, -17158","8007, -2153, -17149"],"8311, -2132, -17045":["8273, -2139, -17044","8341, -2132, -17079","8346, -2132, -17047"],"8165, -2148, -17094":["8113, -2148, -17101","8194, -2141, -17089"],"8055, -2193, -16797":["8021, -2193, -16821","8052, -2193, -16846"],"8009, -2156, -16971":["8009, -2152, -16996","8009, -2156, -16945"],"8082, -2148, -17105":["8113, -2148, -17101","8005, -2153, -17108"],"7695, -2167, -17137":["7705, -2167, -17187","7728, -2163, -17137"],"8215, -2141, -17143":["8194, -2141, -17089","8229, -2141, -17085","8334, -2141, -17155"],"7851, -2151, -17191":["7853, -2153, -17158","7836, -2143, -17212"]}]]
+local PathDiThuyen = [[{"342, 2, 1274":["444, 1, 729","6036, 5, -12251","161, 1, 2008","-860, 1, 1563"],"-6695, 1, 1274":["-7085, 1, 1555","-6150, 1, 1354"],"-1038, 6, 600":["3297, 1, -14696","-1628, 6, 545","-860, 1, 1563"],"1355, 1, 1890":["161, 1, 2008","1904, 1, 1342"],"4897, 1, -15070":["3297, 1, -14696","5533, 1, -16108"],"-6083, 1, 1830":["-1626, 1, 1598","-2032, 1, 1308","-6031, 1, 2197","-6150, 1, 1354"],"-6274, 1, 2637":["-6031, 1, 2197","-7173, 1, 2290"],"3297, 1, -14696":["-1038, 6, 600","4897, 1, -15070"],"1904, 1, 1342":["1419, 1, 441","1355, 1, 1890"],"-7085, 1, 1555":["-7173, 1, 2290","-6695, 1, 1274"],"1003, 1, 499":["444, 1, 729","1419, 1, 441","6036, 5, -12251"],"-1626, 1, 1598":["-6083, 1, 1830","-2032, 1, 1308","-860, 1, 1563"],"161, 1, 2008":["1355, 1, 1890","342, 2, 1274"],"444, 1, 729":["1003, 1, 499","342, 2, 1274"],"-860, 1, 1563":["-1626, 1, 1598","342, 2, 1274","-1038, 6, 600"],"-1953, 1, 897":["-2032, 1, 1308","-1628, 6, 545"],"6096, 6, -14666":["5533, 1, -16108","6036, 5, -12251"],"5533, 1, -16108":["4897, 1, -15070","6096, 6, -14666"],"-6150, 1, 1354":["-6083, 1, 1830","-6695, 1, 1274"],"-1628, 6, 545":["-1038, 6, 600","-1953, 1, 897"],"-7173, 1, 2290":["-7085, 1, 1555","-6274, 1, 2637"],"-6031, 1, 2197":["-6083, 1, 1830","-6274, 1, 2637"],"6036, 5, -12251":["6096, 6, -14666","342, 2, 1274","1003, 1, 499"],"-2032, 1, 1308":["-1626, 1, 1598","-6083, 1, 1830","-1953, 1, 897"],"1419, 1, 441":["1003, 1, 499","1904, 1, 1342"]}]]
+
+local DatThuyen = {
+	Sandora = Vector3.new(-1112.277099609375, 3.9999866485595703, 1168.9307861328125),
+	TownOf = Vector3.new(926.1634521484375, 6.999986171722412, 864.830078125),
+	KoriIsland = Vector3.new(-6489.087890625, 1.4823529720306396, 1736.233154296875),
+	Fishman = Vector3.new(5690.11474609375, 4.075011253356934, -16451.576171875)
+}
+function GetDatThuyenPosition() 
+	local Nearest
+	for k,v in DatThuyen do 
+		if not Nearest then 
+			Nearest = k
+		else
+			if plr:DistanceFromCharacter(v) < plr:DistanceFromCharacter(DatThuyen[Nearest]) then 
+				Nearest = k
+			end
+		end
+	end
+	if Nearest then 
+		if plr:DistanceFromCharacter(DatThuyen[Nearest]) < 1000 then 
+			return DatThuyen[Nearest],Nearest
+		end
+	end
+end
+function StringToVector3(str) 
+	return Vector3.new(unpack(string.split(str, ",")))
+end
+function Deserialize(tabl) 
+    local out = {}
+    for k,v in pairs(tabl) do 
+        if #v > 0 then 
+            local tvk = {}
+            for k,v in pairs(v) do 
+                table.insert(tvk,StringToVector3(v))
+            end
+            out[StringToVector3(k)] = tvk
+        end  
+    end
+    return out
+end
+local Paths = Deserialize(game:GetService("HttpService"):JSONDecode(path))
+FishManPath = Deserialize(game:GetService("HttpService"):JSONDecode(FishManPath))
+local Paths = Deserialize(game:GetService("HttpService"):JSONDecode(path))
+PathODuoiNuoc = Deserialize(game:GetService("HttpService"):JSONDecode(PathODuoiNuoc))
+PathDiThuyen = Deserialize(game:GetService("HttpService"):JSONDecode(PathDiThuyen))
+PathOtherIsland = Deserialize(game:GetService("HttpService"):JSONDecode(PathOtherIsland))
+LPH_NO_VIRTUALIZE(function() 
+	if not getgenv().secure_print then 
+		local connect
+		local old
+		old = hookmetamethod(game,"__index",function(...) 
+			if checkcaller() then return old(...) end
+			if not connect then 
+				connect = Instance.new("BindableFunction")
+				connect.OnInvoke = function(f) 
+					return f()
+				end
+			end
+			return old(...)
+		end)
+		repeat wait() until connect
+		function warpF2(f) 
+			return connect:Invoke(f)
+		end
+		getgenv().secure_print = function(...) 
+			local text = {...}
+			return warpF2(function() 
+				print(unpack(text))
+			end)
+		end
+	end
+	function OctreeLeaf() 
+		local OctreeLeaf = {}
+		OctreeLeaf.__index = OctreeLeaf
+		OctreeLeaf.ClassName = "Rua Bi Thieu Nang"
+		
+		function OctreeLeaf.new(coordinate, data, parent)
+			local self = setmetatable({}, OctreeLeaf)
+			self._coordinate = coordinate
+			self._data = data
+			self._parent = parent
+			return self
+		end
+		
+		function OctreeLeaf:Destroy()
+			self._coordinate = nil
+			self._data = nil
+			self._parent = nil
+		end
+		
+		return OctreeLeaf
+	end
+	function RequireOctree()
+		--[[
+			OCTREE OBJECT
+		@public
+			Octree.new()
+		--]]
+		local OCTANTS = {
+			LeftBottomBack = 1,
+			LeftBottomFront = 2,
+			LeftTopBack = 3,
+			LeftTopFront = 4,
+			RightBottomBack = 5,
+			RightBottomFront = 6,
+			RightTopBack = 7,
+			RightTopFront = 8
+		}
+		local BOUNDS_MAP = {
+			[OCTANTS.LeftBottomBack] = {1, 1, 1},
+			[OCTANTS.LeftBottomFront] = {1, 1, 2},
+			[OCTANTS.LeftTopBack] = {1, 2, 1},
+			[OCTANTS.LeftTopFront] = {1, 2, 2},
+			[OCTANTS.RightBottomBack] = {2, 1, 1},
+			[OCTANTS.RightBottomFront] = {2, 1, 2},
+			[OCTANTS.RightTopBack] = {2, 2, 1},
+			[OCTANTS.RightTopFront] = {2, 2, 2}
+		}
+		local OCTANT_MAP = {
+			[1] = {
+				[1] = {
+					[1] = OCTANTS.LeftBottomBack,
+					[2] = OCTANTS.LeftBottomFront
+				},
+				[2] = {
+					[1] = OCTANTS.LeftTopBack,
+					[2] = OCTANTS.LeftTopFront
+				}
+			},
+			[2] = {
+				[1] = {
+					[1] = OCTANTS.RightBottomBack,
+					[2] = OCTANTS.RightBottomFront
+				},
+				[2] = {
+					[1] = OCTANTS.RightTopBack,
+					[2] = OCTANTS.RightTopFront
+				}
+			}
+		}
+	
+		local function isClose(a, b, eps)
+			return (a - b).Magnitude <= eps
+		end
+	
+		local function getOctant(center, pos)
+			local x = (pos.X <= center.X) and 1 or 2
+			local y = (pos.Y <= center.Y) and 1 or 2
+			local z = (pos.Z <= center.Z) and 1 or 2
+			return OCTANT_MAP[x][y][z]
+		end
+	
+		local OctreeLeaf = OctreeLeaf()
+		local Octree = {}
+	
+		Octree.__index = Octree
+		Octree.ClassName = script.Name
+	
+		function Octree.new(corner_1, corner_2, epsilon, parent)
+			assert(typeof(corner_1) == "Vector3", "Need vector3 corner_1")
+			assert(typeof(corner_2) == "Vector3", "Need vector3 corner_2")
+			local self = setmetatable({}, Octree)
+			self._children = {}
+			self._corner1 = corner_1
+			self._corner2 = corner_2
+			self._center = (corner_2 - corner_1) * .5 + corner_1 -- precompute center for efficiency
+			self._parent = parent
+			self._epsilon = epsilon or 1E-1
+			self._dataToLeaf = {}
+			if parent then
+				assert(parent.ClassName == Octree.ClassName, "Tried to set invalid parent!")
+				self._dataToLeaf = parent._dataToLeaf
+			end
+			return self
+		end
+	
+		function Octree:Destroy()
+			for k, v in self._children do
+				v:Destroy()
+				self._children[k] = nil
+			end
+			self._children = nil
+			self._corner1 = nil
+			self._corner2 = nil
+			self._center = nil
+			self._parent = nil
+			self._epsilon = nil
+			self._data = nil
+			self._coordinate = nil
+			self._dataToLeaf = nil
+		end
+	
+		function Octree:Insert(coordinate, data)
+			assert(typeof(coordinate) == "Vector3", "Coordinates must be Vector3!")
+			assert(data, "Tried to insert without data!")
+			if (self._center - coordinate).Magnitude <= self._epsilon then
+				self._data = data
+				self._coordinate = coordinate
+				self._dataToLeaf[data] = self
+				return self
+			end
+	
+			local octant = getOctant(self._center, coordinate)
+			local child = self._children[octant]
+			if not child then
+				self._children[octant] = OctreeLeaf.new(coordinate, data, self)
+				self._dataToLeaf[data] = self._children[octant]
+			elseif child.ClassName == OctreeLeaf.ClassName then
+				if (child._coordinate - coordinate).Magnitude <= self._epsilon then
+					error("Tried to insert duplicate point in octree!")
+				end
+				local c1, c2 = self:GetBounds(octant)
+				local newNode = Octree.new(c1, c2, self._epsilon, self)
+				self._children[octant] = newNode
+				newNode:Insert(child._coordinate, child._data)
+				return newNode:Insert(coordinate, data)
+			else
+				return child:Insert(coordinate, data)
+			end
+		end
+	
+		function Octree:GetBounds(octant)
+			local bounds = BOUNDS_MAP[octant]
+			local xDif = (self._center.X - self._corner1.X) * (bounds[1] - 1)
+			local yDif = (self._center.Y - self._corner1.Y) * (bounds[2] - 1)
+			local zDif = (self._center.Z - self._corner1.Z) * (bounds[3] - 1)
+			local diffVec = Vector3.new(xDif, yDif, zDif)
+			local v1 = self._corner1 + diffVec
+			local v2 = self._center + diffVec
+			return v1, v2
+		end
+	
+		local function recursiveNN(node, coord, best, dist)
+			if not node then
+				return best, dist
+			end
+			if node._data then
+				local currDist = (node._coordinate - coord).Magnitude
+				if currDist < dist then
+					best = node
+					dist = currDist
+				end
+			end
+			if node.ClassName == Octree.ClassName then
+				-- check if we should even go deeper (i.e. if it's even plausible the nearest neighbor is in bounding box)
+				local c1 = node._corner1
+				local c2 = node._corner2
+				-- lazy check (quick spherical check)
+				-- #TODO: Add tighter bounds check
+				local radius = (c1 - c2).Magnitude * .5
+				if (node._center - coord).Magnitude < radius + dist then
+					local octant = getOctant(node._center, coord)
+					-- we use the octant as a heuristic for the "most likely" next child
+					-- #TODO: Add better heuristics
+					for i = -1, 6 do
+						local curr = (octant + i) % 8 + 1
+						local child = node._children[curr]
+						best, dist = recursiveNN(child, coord, best, dist)
+					end
+				end
+			end
+			return best, dist
+		end
+	
+		function Octree:GetNearestNeighbor(coordinate, max_dist)
+			assert(typeof(coordinate) == "Vector3", "Coordinates must be Vector3!")
+			max_dist = max_dist or math.huge
+			local best, dist = recursiveNN(self, coordinate, nil, math.huge)
+			if best and (coordinate - best._coordinate).Magnitude <= max_dist then
+				return best._data, best._coordinate
+			end
+		end
+	
+		function Octree:Remove(data)
+			assert(data, "Did not pass data to remove!")
+			local leaf = self._dataToLeaf[data]
+			if not leaf then
+				error("Object is not in octree!")
+			end
+			if leaf.ClassName == Octree.ClassName then
+				leaf:_RemoveChild(leaf)
+			else
+				leaf._parent:_RemoveChild(leaf)
+			end
+		end
+	
+		function Octree:Contains(data)
+			return self._dataToLeaf[data] ~= nil
+		end
+	
+		function Octree:_RemoveChild(child)
+			if not child then
+				return
+			end
+			if child == self then
+				-- special case for when the node itself contains the data
+				self._dataToLeaf[self._data] = nil
+				self._data = nil
+				self._coordinate = nil
+			end
+			local childCount = self._data and 1 or 0
+			local onlyChild = (self._data and self) or nil
+			for k, v in self._children do
+				if v == child then
+					if child._data then
+						self._dataToLeaf[child._data] = nil
+					end
+					self._children[k] = nil
+					v:Destroy()
+				else
+					childCount = childCount + 1
+					onlyChild = v
+				end
+			end
+			if childCount <= 0 and self._parent and not self._data then
+				self._parent:_RemoveChild(self)
+			end
+		end
+	
+		function Octree:GetSize()
+			local size = (self._data and 1) or 0
+			for k, v in self._children do
+				if v.ClassName == self.ClassName then
+					size = size + v:GetSize()
+				else
+					size = size + 1
+				end
+			end
+			return size
+		end
+	
+		return Octree
+	end
+	
+	local function heuristicCostEstimate(startPos, goalPos)
+		-- Calculate the heuristic cost estimate (Manhattan distance)
+		return (startPos-goalPos).magnitude
+		--return math.abs(goalPos.X - startPos.X) + math.abs(goalPos.Y - startPos.Y) + math.abs(goalPos.Z - startPos.Z)
+	end
+	
+	local function reconstructPath(cameFrom, current)
+		-- Reconstruct the path from the goal to the start
+		local path = {}
+		while current do
+			table.insert(path, 1, current)
+			current = cameFrom[current]
+		end
+		return path
+	end
+	
+	function aStar(startPos, goalPos, input)
+		local openSet = { [startPos] = true } -- Set of nodes to be evaluated
+		local cameFrom = {} -- Map of navigated nodes
+		local gScore = { [startPos] = 0 } -- Cost from start along the best known path
+		local fScore = { [startPos] = heuristicCostEstimate(startPos, goalPos) } -- Estimated total cost from start to goal through the node
+	
+		while next(openSet) do
+			-- Find the node with the lowest fScore in the openSet
+			local current, lowestFScore
+			for node in openSet do
+				local nodeFScore = fScore[node]
+				if not lowestFScore or nodeFScore < lowestFScore then
+					lowestFScore = nodeFScore
+					current = node
+				end
+			end
+	
+			if current == goalPos then
+				-- Goal reached, reconstruct and return the path
+				return reconstructPath(cameFrom, current)
+			end
+	
+			openSet[current] = nil -- Remove current node from openSet
+	
+			-- Explore neighbors
+			local neighbors = input[current] or {}
+			for _, neighbor in neighbors do
+				local neighborGScore = gScore[neighbor] or math.huge
+				local tentativeGScore = gScore[current] + 1 -- Assuming each step costs 1
+	
+				if tentativeGScore < neighborGScore then
+					-- This path to neighbor is better than any previous one, store it
+					cameFrom[neighbor] = current
+					gScore[neighbor] = tentativeGScore
+					fScore[neighbor] = tentativeGScore + heuristicCostEstimate(neighbor, goalPos)
+	
+					openSet[neighbor] = true -- Add neighbor to openSet if not already present
+				end
+			end
+		end
+	
+		-- Open set is empty but goal was not reached, path does not exist
+		return nil
+	end
+end)()
+-- PathFind:
+
+
+--local print = secure_print
+--
+local mouse = plr:GetMouse()
+local VirtualInputManager = GetService("VirtualInputManager")
+function ClickAtPosition(ClickPosition,NoInset,NoBack,Delay) 
+	local inset = game:GetService("GuiService"):GetGuiInset()
+	local old = Vector2.new(mouse.x+inset.X,mouse.y+inset.Y)
+	if NoInset then inset = Vector2.new(0,0) end
+	VirtualInputManager:SendMouseMoveEvent(ClickPosition.x+inset.X,ClickPosition.y+inset.Y,game)
+	wait()
+	VirtualInputManager:SendMouseButtonEvent(ClickPosition.x+inset.X,ClickPosition.y+inset.Y,0,true,nil,0)
+	if Delay then 
+		wait(Delay)
+	else
+		wait(math.random(0.1,0.3))
+	end
+	VirtualInputManager:SendMouseButtonEvent(ClickPosition.x+inset.X,ClickPosition.y+inset.Y,0,false,nil,0)
+end
+function GetCenter(obj) 
+	return Vector2.new(obj.AbsolutePosition.X + (obj.AbsoluteSize.X / 2),obj.AbsolutePosition.Y + (obj.AbsoluteSize.Y / 2))
+end
+function ClickGui(gui) 
+	local inset = game:GetService("GuiService"):GetGuiInset()
+	local Position = GetCenter(gui)
+	ClickAtPosition(Position)
+end	
+local data = game.ReplicatedStorage["Stats" .. game.Players.LocalPlayer.Name]
+
+getgenv().SendKey = function(key,toggle) 
+	VirtualInputManager:SendKeyEvent(toggle, Enum.KeyCode[key], false, game)
+end
+
+
+
+-- check error
+local s,e = tvk(function() 
+	
+local plr = game.Players.LocalPlayer
+function IsPlayerAlive() 
+	if not (game.workspace.PlayerCharacters:FindFirstChild(plr.Name)
+	and not game.workspace.Ragdolls:FindFirstChild(plr.Name)
+	and not plr.PlayerGui:FindFirstChild("DEATHGUI")
+	and not plr.PlayerGui:FindFirstChild("Blackout")
+	and plr.Character:FindFirstChild("HumanoidRootPart")) then
+		return false
+	end
+
+	return plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") and plr.Character:FindFirstChild("Head") and plr.Character:FindFirstChild("Humanoid") and plr.Character.Humanoid.Health > 0 and not (game:GetService("CoreGui").RobloxGui:FindFirstChild("SettingsShield") and game:GetService("CoreGui").RobloxGui.SettingsShield.SettingsShield.Visible )
+end
+local Settings = {}
+local SaveFileName = plr.Name.."_GrandPieceOnline.json"
+
+function SaveSettings()
+	local HttpService = game:GetService("HttpService")
+	if not isfolder("Sea Hub") then
+		makefolder("Sea Hub")
+	end
+	writefile("Sea Hub/" .. SaveFileName, HttpService:JSONEncode(Settings))
+end
+
+function ReadSetting() 
+	local s,e = pcall(function() 
+		local HttpService = game:GetService("HttpService")
+		if not isfolder("Sea Hub") then
+			makefolder("Sea Hub")
+		end
+		return HttpService:JSONDecode(readfile("Sea Hub/" .. SaveFileName))
+	end)
+	if s then return e 
+	else
+		SaveSettings()
+		return ReadSetting()
+	end
+end
+Settings = ReadSetting()
+
+if game.PlaceId == 1730877806 then 
+	repeat wait() until game:GetService("ReplicatedStorage").Events:FindFirstChild("reserved")
+	spawn(function()
+		while wait(1) do
+			if Settings.PSCode and Settings.PSCode ~= "" then
+				if GuiToggled then ToggleGUI() end
+				if plr.PlayerGui:FindFirstChild("chooseType") then
+					while plr.PlayerGui:FindFirstChild("chooseType") do
+						ClickGui(plr.PlayerGui.chooseType.Frame.regular)
+						wait()
+					end
+					break
+				else
+					if plr.PlayerGui.reserved.Enabled then 
+						if game:GetService("UserInputService"):GetFocusedTextBox() ~= plr.PlayerGui.reserved.Frame.CodeBox.TextBox then 
+							ClickGui(plr.PlayerGui.reserved.Frame.CodeBox.TextBox)
+						else
+							if plr.PlayerGui.reserved.Frame.CodeBox.TextBox.Text == Settings.PSCode then 
+								SendKey("Return",true)
+								wait(.1)
+								SendKey("Return",false)
+							else
+								for i = 1,#Settings.PSCode do 
+									local char = string.sub(Settings.PSCode,i,i)
+									VirtualInputManager:SendTextInputCharacterEvent(char,nil)
+									wait(math.random(.1,.2))
+								end
+								wait(1)
+							end
+						end
+					else
+						ClickGui(plr.PlayerGui.ScreenGui.reserve)
+					end
+				end
+			else
+				if plr.PlayerGui.ScreenGui.Sail.Position.Y.Scale > 1 then 
+					ClickGui(plr.PlayerGui.ScreenGui.Play)
+				else
+					ClickGui(plr.PlayerGui.ScreenGui.Sail)
+				end
+			end
+		end
+	end)
+	return
+end
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/minhhau207/SilverHub/main/uihubS"))()
+local Main = Library.CreateMain({Title = 'Grand Piece Online', Desc = ''})
+
+local Page1 = Main.CreatePage({Page_Name = 'Misc', Page_Title = 'Main Tab'})
+local Section11 = Page1.CreateSection('Auto Rejoin')
+Section11.CreateToggle({Title = 'Auto Rejoin', Desc = "Auto rejoin when got kicked", Default = Settings.AutoRejoin}, function(v)
+	Settings.AutoRejoin = v
+end)
+function GetPing()
+    return game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue()
+end
+function AntiFrozePing()
+    local CurrentPing = GetPing()
+    if CurrentPing == 0 then return end
+    if NewPing and NewPing == GetPing() then
+        LastCheck = tick()
+    else
+        NewCheck = tick()
+    end
+    if LastCheck and NewCheck
+    and LastCheck - NewCheck > 60 then 
+        if Settings.KickMethod == "Close Game" then 
+            game:Shutdown()
+        else
+            plr:Kick("\n[Sea Hub]\n".."Your ping froze")
+        end
+        wait(10)
+    end
+    NewPing = GetPing()
+end
+Section11.CreateToggle({Title = 'Anti Froze Ping', Desc = "Auto kick you from the game if client's ping froze", Default = Settings.AntiFP}, function(v)
+    Settings.AntiFP = v
+    spawn(function()
+        while Settings.AntiFP do wait(2) 
+            pcall(function()
+                AntiFrozePing()
+            end)
+        end
+    end)
+end)
+Section11.CreateBox({Title = 'Auto Join Private Server', Placeholder = 'Private Server code here', Number_Only = false, Default = Settings.PSCode}, function(v) 
+	Settings.PSCode = v
+end)
+
+getgenv().IslandPos = {
+    ["Town of Beginnings"] = CFrame.new(965.146, 10, 1195.127),
+    ["Marine Fort F-1"] = CFrame.new(2904.113, 25, -994.2),
+    ["Sandora"] = CFrame.new(-1316.089, 15, 1129.95),
+    ["Shell's Town"] = CFrame.new(-605.248, 15, -4430.41),
+    ["Zou"] = CFrame.new(-4458.681, 10, -2502.741),
+    ["Restaurant Baratie"] = CFrame.new(-3909.713, 55, -5569.912),
+    ["Orange Town"] = CFrame.new(-6999.987, 10, -5345.705),
+    ["Mysterious Cliff"] = CFrame.new(2180.005, 415, -8628.285),
+    ["Roca Island"] = CFrame.new(5426.218, 20, -4918.854),
+    ["Colosseum"] = CFrame.new(-2019.975, 10, -7661.091),
+    ["Sphinx Island"] = CFrame.new(-6327.812, 45, -10129.278),
+    ["Kori Island"] = CFrame.new(-6684.44, 10, 1828.623),
+    ["Arlong Park"] = CFrame.new(652.855, 15, -13122.346),
+    ["Land of the Sky"] = CFrame.new(9016.793, 1440, -10542.829),
+    ["Knock-Up Stream Rock"] = CFrame.new(8116, 10, -9819),
+    ["Gravito's Fort"] = CFrame.new(2611.159, 15, -15359.032),
+    ["Fishman Cave"] = CFrame.new(5682.19, 5, -16458.479),
+    ["Fishman Island"] = CFrame.new(8003.553, -2150, -17056.971),
+    ["Marine Base G-1"] = CFrame.new(-9955.175, 70, -14910.613),
+    ["Coco Island"] = CFrame.new(-4262.249, 10, -15531.864),
+    ["Reverse Mountain"] = CFrame.new(-14338, 20, -9446),
+    ["Shrine"] = CFrame.new(-12184.12890625, 3.2737002372742, -18545.69921875)
+}
+local CaiNayChacChanLaArrayListDeLamDropdownCaiIslandPositionARuaBiThieuNangKiaMauXanhAaaConCaSauhuhu = {}
+for k,v in pairs(IslandPos) do
+	
+	if workspace.Islands:FindFirstChild(k) then
+		--print(k)
+		table.insert(CaiNayChacChanLaArrayListDeLamDropdownCaiIslandPositionARuaBiThieuNangKiaMauXanhAaaConCaSauhuhu,k)
+	end
+end
+
+getgenv().RaycastDriveBoat = 0
+function RaycastWhitelist(Whitelist,Start, Direction)
+    local raycastParameters = RaycastParams.new()
+    raycastParameters.FilterDescendantsInstances = Whitelist
+    raycastParameters.FilterType = Enum.RaycastFilterType.Whitelist
+    raycastParameters.IgnoreWater = false
+    local rels = workspace:Raycast(Start, Direction, raycastParameters)
+    return rels
+end
+Section11.CreateDropdown({Title = 'Drive Boat to Islands', List = CaiNayChacChanLaArrayListDeLamDropdownCaiIslandPositionARuaBiThieuNangKiaMauXanhAaaConCaSauhuhu, Default = "",Search = true}, function(v) 
+	if getgenv().IslandPos[v] then 
+		if not workspace.Ships:FindFirstChild(plr.Name.."Ship") or not workspace.Ships[plr.Name.."Ship"]:FindFirstChild("VehicleSeat") or plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+			Library.CreateNoti({Title = 'Boat Autopilot', Desc = "You need to be (sit) on a boat first before using this", Duration = 5})
+		else
+			DriveBoat(getgenv().IslandPos[v].p,function() 
+				if not workspace.Ships:FindFirstChild(plr.Name.."Ship") or not workspace.Ships[plr.Name.."Ship"]:FindFirstChild("VehicleSeat") or plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+					return true
+				end
+				if tick() - getgenv().RaycastDriveBoat > 1 then 
+					getgenv().RaycastDriveBoat = tick()
+					local Raycast = RaycastWhitelist({workspace.Islands},workspace.Ships[plr.Name.."Ship"].VehicleSeat.Position,workspace.Ships[plr.Name.."Ship"].VehicleSeat.CFrame.LookVector * 100)
+					if Raycast then 
+						if Raycast.Instance then 
+							if Raycast.Instance:IsDescendantOf(workspace.Islands[v]) then 
+								if plr:DistanceFromCharacter(Raycast.Position) < 100 then 
+									return true
+								end
+							end
+						end
+					end
+				end
+				return plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat
+			end)
+			SendKey("Space",true)
+			wait()
+			SendKey("Space",false)
+		end
+	end
+end)
+
+local Page1 = Main.CreatePage({Page_Name = 'Farm', Page_Title = 'Farm Tab'})
+local Section11 = Page1.CreateSection('Auto Farm')
+getgenv().LevelFarmToggle = Section11.CreateToggle({Title = 'Level Farm', Default = Settings.LevelFarm,Desc = "Auto farm beli to buy rifle, then go to fishman island"}, function(v)
+	Settings.LevelFarm = v
+	if v then 
+		UserSettings():GetService("UserGameSettings").CameraMode = Enum.CustomCameraMode.Default
+	end
+	spawn(function()
+		repeat wait()
+		until BS_Text
+		if v then
+			BS_Text.Parent.Visible = true
+		else
+			BS_Text.Parent.Visible = false
+		end
+	end)
+end)
+function IsBusoActivated()
+    if not plr.Character then
+        return false
+    end
+    for k, v in pairs(plr.Character:GetChildren()) do
+        if string.match(v.Name, "Buso") then
+            return true
+        end
+    end
+    return false
+end
+Section11.CreateToggle({Title = 'Auto Enable Buso Haki', Default = Settings.AutoBuso,Desc = "Will automaticly enable Buso Haki when the bar is full"}, function(v)
+	Settings.AutoBuso = v
+	spawn(function() 
+		while Settings.AutoBuso and wait() do 
+			if Settings.AutoBuso then 
+				pcall(function() 
+					if plr.PlayerGui.HUD.Buso.BBar.bar.Size == UDim2.new(1,0,1,0) then 
+						if not IsBusoActivated() then 
+							SendKey("J",true)
+							wait()
+							SendKey("J",false)
+							wait(1)
+						end
+					end
+				end)
+			end
+		end
+	end)
+end)
+Section11.CreateToggle({Title = 'Auto Buso Quest', Default = Settings.BusoMax,Desc = "Auto do Buso Quest (Yeti) when your Level above 90"}, function(v)
+	Settings.BusoMax = v
+end)
+Section11.CreateToggle({Title = 'Hop Low Server when nearby', Desc = "Hop to low player server when there's a player nearby your farming area", Default = Settings.HopWhenNear}, function(v)
+	Settings.HopWhenNear = v
+end)
+Section11.CreateToggle({Title = 'Fishman Island instant Teleport', Desc = "Will instant teleport to Fishman Island instead of use rowboat and drives to it\n* Risky/may get logged/may get kick during teleport", Default = Settings.FI_InstantTP}, function(v)
+	Settings.FI_InstantTP = v
+end)
+Section11.CreateToggle({Title = 'Auto Join Party', Desc = "Auto join whoever's party that invited you", Default = Settings.AcceptCrew}, function(v)
+	Settings.AcceptCrew = v
+end)
+-- if not script_key then
+-- 	Section11.CreateToggle({Title = 'Go to Town of Beggining', Desc = "Rua bi thieu nang a cai nay may th kia k thay dau tvk if not script_key rui hihi", Default = Settings.TownOfBegin}, function(v)
+-- 		Settings.TownOfBegin = v
+-- 	end)
+-- end
+--getgenv().LFStatus = Section11.CreateLabel({Title = "Level Farm Status"})
+--[[
+local Section11 = Page1.CreateSection('Webhook')
+Section11.CreateBox({Title = 'Status Webhook Url', Placeholder = 'Type here', Number_Only = false, Default = Settings.WebHookUrl}, function(v) 
+	Settings.WebHookUrl = v
+end)
+Section11.CreateBox({Title = 'Overal Webhook Url', Placeholder = 'Type here', Number_Only = false, Default = Settings.OverWebHookUrl}, function(v) 
+	Settings.OverWebHookUrl = v
+end)
+Section11.CreateToggle({Title = 'Webhook', Default = Settings.Webhook}, function(v)
+	Settings.Webhook = v
+end)
+]]
+
+SettingPage = Main.CreatePage({Page_Name = 'Setting', Page_Title = 'Setting Tab'})
+AutoSaveSection = SettingPage.CreateSection('Auto Save Settings')
+AutoSaveToggle = AutoSaveSection.CreateToggle({Title = 'Auto Save', Default = Settings.AutoSave}, function(v)
+    Settings.AutoSave = v
+    spawn(function()
+        while Settings.AutoSave and wait(2) do
+            SaveSettings()
+        end
+        if not v then
+            Settings.AutoSave = false
+            SaveSettings()
+        end
+    end)
+end)
+GUISettingSection = SettingPage.CreateSection('GUI Settings')
+TimeWaveLabel = GUISettingSection.CreateLabel({Title = "Timer"})
+spawn(function()
+	while wait(.25) do
+		local TotalTime = game.workspace.DistributedGameTime
+		local Sec = math.round(TotalTime % 60)
+		local Min = math.floor(TotalTime / 60 % 60)
+		local Hour = math.floor(TotalTime / 3600)
+		if Sec == 60 then Sec = 0 Min = Min + 1 end
+		if Min == 60 then Min = 0 Hour = Hour + 1 end
+		local SecFormat = "" if string.len(Sec) == 1 then SecFormat = "0" end
+		local MinFormat = "" if string.len(Min) == 1 then MinFormat = "0" end
+		local HourFormat = "" if string.len(Hour) == 1 then HourFormat = "0" end
+		getgenv().S_Timer = string.format(MinFormat .. '%.0f:' .. SecFormat .. '%.0f', Min, Sec)
+		if Hour >= 1 then
+			getgenv().S_Timer = string.format(HourFormat .. '%.0f:', Hour) .. getgenv().S_Timer
+		end
+		TimeWaveLabel.SetText("Timer: " .. getgenv().S_Timer)
+	end
+end)
+local Status = "None"
+getgenv().GuiToggled = true
+function ToggleGUI()
+	getgenv().GuiToggled = not getgenv().GuiToggled
+	if game.CoreGui:FindFirstChild("Sea Hub GUI")then for a,b in ipairs(game.CoreGui:GetChildren())do if b.Name=="Sea Hub GUI"then b.Enabled=getgenv().GuiToggled end end end
+end
+
+GUISettingSection.CreateBind({Title = 'Toggle GUI', Key = Enum.KeyCode.P}, function()
+	ToggleGUI()
+end)
+wait()
+if getgenv().Key == nil then
+	GUISettingSection.CreateButton({Title = 'Destroy GUI'}, function()
+		if game.CoreGui:FindFirstChild("Sea Hub GUI")then for a,b in ipairs(game.CoreGui:GetChildren())do if b.Name=="Sea Hub GUI"then b:Destroy()end end end
+	end)
+end
+
+game.CoreGui.DescendantAdded:Connect(function()
+	wait(2)
+	pcall(function()
+		if game.CoreGui.RobloxPromptGui.promptOverlay:FindFirstChild("ErrorPrompt") then
+			if Settings.AutoRejoin then
+				game:GetService("TeleportService"):Teleport(1730877806, plr)
+			end
+		end
+	end)
+end)
+
+
+function IsMobAlive(v) 
+	return v.Parent and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Info") and v:FindFirstChild("Head") and v:FindFirstChild("Humanoid") and v.Humanoid.Health > 0
+end
+
+function SortTwoVal(a,b) 
+	if a > b then return b,a end
+	return a,b
+end
+local function getRandomPositionInRegion(regionMin,regionMax)
+	local randomX = math.random(SortTwoVal(regionMin.X, regionMax.X))
+	local randomY = math.random(SortTwoVal(regionMin.Y, regionMax.Y))
+	local randomZ = math.random(SortTwoVal(regionMin.Z, regionMax.Z))
+
+	return Vector3.new(randomX, randomY, randomZ)
+end
+
+-- function GetCurrentQuest()
+-- 	return tostring(data.Quest.CurrentQuest.Value)
+-- end
+
+for k,v in pairs(workspace.NPCs:GetDescendants()) do 
+	pcall(function() 
+		v.CanCollide = false
+	end)
+end
+
+local minQuestLevel = {
+	["Help becky"] = 190
+}
+function CanGetQuest(quest)
+	if not quest then return plr.PlayerGui.Quest.Quest.Visible == false and not plr.QuestCD.Value end
+	if plr.QuestCD.Value then 
+		return "Quest on cooldown"
+	end
+	if GetCurrentQuest() ~= quest then 
+		if GetCurrentQuest() ~= "None" then 
+			return "Doing other quest"	
+		else
+			if minQuestLevel[quest] then 
+				if data.Stats.Level.Value < minQuestLevel[quest] then 
+					return "Level too low"
+				end
+			end
+			return "Can get quest"
+		end
+	else
+		return "Already doing quest"
+	end
+end
+local Valu = Instance.new("Part")
+--Valu.Parent = game.Workspace
+Valu.Anchored =true
+Valu.Changed:Connect(function(v) 
+	workspace.CurrentCamera.CFrame = CFrame.lookAt(workspace.CurrentCamera.CFrame.p,workspace.CurrentCamera.CFrame.p+Valu.CFrame.lookVector)
+end)
+local StopLastRotation
+local TweenService = game:GetService("TweenService")
+local function rotateCameraToDirection(direction,NoWait)
+	direction = direction.unit
+	if not IsPlayerAlive() then return end
+	if plr.Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall then return end
+	if StopLastRotation then StopLastRotation() end
+	local currentCameraCFrame = workspace.CurrentCamera.CFrame
+	local targetCameraCFrame = CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, workspace.CurrentCamera.CFrame.Position + direction)		
+
+	local info =
+		TweenInfo.new(
+		.2,
+		Enum.EasingStyle.Linear
+	)
+	Valu.CFrame = CFrame.new(Vector3.new(),workspace.CurrentCamera.CFrame.lookVector)
+
+	local TweenStart = tick()
+	local tweenObject = TweenService:Create(Valu, info, {CFrame = CFrame.new(Vector3.new(),direction)})
+	local Tweening = true
+
+	local completed
+	completed = tweenObject.Completed:Connect(function() 
+		Tweening = false
+		completed:Disconnect()
+	end)
+	StopLastRotation = function() 
+		Tweening = false
+		tweenObject:Cancel()
+		completed:Disconnect()
+		completed = nil
+		tweenObject = nil
+	end
+	tweenObject:Play()
+	if not NoWait then 
+		repeat wait() 
+		until not Tweening or tick() - TweenStart > 1
+	end
+	return
+end
+
+local defaultStopFunction = function() return false end
+
+getgenv().WalkTo = function(pos,stopfunc,norotate,Settings) 
+	if not IsPlayerAlive() then return end
+	if not Settings then Settings = {} end
+	if typeof(pos) == "CFrame" then
+		pos = pos.p 
+	end
+	if not stopfunc then stopfunc = defaultStopFunction end
+	local dir = (pos - plr.Character.Head.Position).unit
+	if not norotate then 
+		rotateCameraToDirection(dir,true)
+	end
+	if not IsPlayerAlive() then return end
+	if not timeout then timeout = 4 end
+	plr.Character.Humanoid:MoveTo(pos)
+	local StartedMove = tick()
+	local Reached = false
+	local MoveToFinished = plr.Character.Humanoid.MoveToFinished:Connect(function() 
+		Reached = true
+	end)
+	repeat wait()
+		if not stopfunc() then return end
+		if not IsPlayerAlive() then return end 
+		if not Settings.DiThuyen then 
+			if plr.Character.Humanoid.SeatPart ~= nil then 
+				SendKey("Space",true)
+				wait()
+				SendKey("Space",false)
+			end
+		end
+		plr.Character.Humanoid:MoveTo(pos)
+		if Settings.UnderWater then
+			if math.abs(plr.Character.HumanoidRootPart.Position.Y - pos.Y) > 3 then 
+				local SendControl = false
+				if pos.Y < plr.Character.HumanoidRootPart.Position.Y then 
+					SendControl = true
+				else
+					SendControl = false
+				end
+				SendKey("LeftControl",SendControl)
+				SendKey("Space",not SendControl)
+				wait(.2)
+			else
+				SendKey("LeftControl",false)
+				SendKey("Space",false)
+			end
+		else
+			if plr.Character.Head:FindFirstChild("BillboardGui") then 
+				SendKey("Space",true)
+				wait(.1)
+				SendKey("Space",false)
+			end
+			if plr.Character.HumanoidRootPart:FindFirstChild("SwimPosition") then 
+				if math.abs(plr.Character.HumanoidRootPart.SwimPosition.Position.Y - (-2.718)) > 0.01 then 
+					SendKey("Space",true)
+					wait(.1)
+					SendKey("Space",false)
+				end
+			end
+		end
+		if Settings.SeatCheck then 
+			if plr.Character.Humanoid.Sit then 
+				SendKey("Space",true)
+				wait(.1)
+				SendKey("Space",false)
+			end
+		end
+	until Reached or tick() - StartedMove > timeout 
+	plr.Character.Humanoid:Move(Vector3.new())
+	MoveToFinished:Disconnect()
+	MoveToFinished = nil
+end
+local function easeInOutCubic(t)
+	t = t * 2
+	if t < 1 then
+		return 0.5 * t * t * t
+	else
+		t = t - 2
+		return 0.5 * (t * t * t + 2)
+	end
+end
+local ignored = {workspace.Islands["Town of Beginnings"].Buildings,game.Workspace.NPCs,workspace.PlayerCharacters}
+for k,v in pairs(workspace.Islands["Town of Beginnings"]:GetChildren()) do 
+	if string.match(v.Name,"Tree") then 
+		table.insert(ignored,v)
+	end
+end
+function RayCast(des,Direction) 
+	local ray = Ray.new(des, Direction)
+	local thieutvknang = workspace:FindPartOnRayWithIgnoreList(ray, ignored)
+	return thieutvknang
+end
+function CheckWall(des, returnwall) 
+	local Direction = (des.p - plr.Character.HumanoidRootPart.Position ).unit
+	Direction = Vector3.new(Direction.X,0,Direction.Z) * 3
+
+	local Height = 0
+	while true do 
+		local Wall = RayCast(plr.Character.HumanoidRootPart.Position + Vector3.new(0,Height * 2 - 1,0),plr.Character.HumanoidRootPart.CFrame.lookVector*3)
+		if Wall and returnwall then
+			return Wall
+		end
+		if not Wall then 
+			return Height 
+		end
+		Height = Height + 1
+	end
+	return Height
+end
+function IsClimbing() 
+	for k,v in plr.Character.Humanoid:GetPlayingAnimationTracks() do 
+		if tostring(v) == "Up" or tostring(v) == "Down" or tostring(v) == "Ledge" then return true end
+	end
+end
+
+
+function WTS(part, toggle)
+	local screen,OnScreen = workspace.CurrentCamera:WorldToViewportPoint(part)
+	return Vector2.new(screen.x, screen.y),OnScreen
+end
+function DriveBoat(Pos,stopfunc) 	
+	while wait() do 
+		if not IsPlayerAlive() then return end 
+		if stopfunc() then return "StopFunc" end
+
+		local LookVector = plr.Character.HumanoidRootPart.CFrame.lookVector			
+		LookVector = Vector3.new(LookVector.X,0,LookVector.Z)
+
+		local Direction = (Pos - plr.Character.HumanoidRootPart.Position).unit
+		Direction = Vector3.new(Direction.X,0,Direction.Z)
+
+
+		local angleToB = math.acos(LookVector:Dot(Direction))
+		local perpendicularDirection = Vector3.new(-Direction.Z, 0, Direction.X)
+		local angleToPerpendicular = math.acos(LookVector:Dot(perpendicularDirection))
+		--print(RuaBiNang:Dot(Direction))
+        
+		local cross_product = (Direction.X * LookVector.X) - (Direction.Z * LookVector.Z)
+		local dot_product = (Direction.X * LookVector.X) + (Direction.Z * LookVector.Z)
+		if LookVector:Dot(Direction) < 0.999 then 
+			SendKey("W",true)
+			local SendD = false
+			local fastestDirection
+			if angleToB < math.pi / 2 then
+				fastestDirection = Direction:Cross(LookVector).Y > 0 and "A" or "D"
+			else
+				fastestDirection = perpendicularDirection:Cross(LookVector).Y > 0 and "A" or "D"
+			end
+			if fastestDirection == "A" then SendD = true end
+			SendKey("D",SendD)
+			SendKey("A",not SendD)
+		else
+			SendKey("W",true)
+			SendKey("D",false)
+			SendKey("A",false)
+		end
+		if plr:DistanceFromCharacter(Pos) < 20 then 
+			SendKey("W",false)
+			break
+		end
+	end
+	SendKey("W",false)
+	SendKey("D",false)
+	SendKey("A",false)
+end
+
+local Green = Color3.fromRGB(85, 255, 127)
+local LastClimb = false
+local LastNoWall = 0
+function WalkR(cf,stopfunction,dontstop)  -- stopfunction return true => stop
+	--do return MovePlayerToPosition(cf.p) end
+	--workspace.CurrentCamera:Zoom(0)
+	if not IsPlayerAlive() then return end 
+
+	if not stopfunction then 
+		stopfunction = defaultStopFunction
+	end 
+	local Settings = {
+		NoRotate = false,
+		StopDistance = 6,
+		StopFunction = defaultStopFunction,
+		DistanceNoY = false,
+		GoDown = false,
+		Timeout = 10,
+		UnderWater = false,
+		DiThuyen = false
+	}
+	if type(stopfunction) == "table" then 
+		for k,v in pairs(stopfunction) do Settings[k] = v end
+		--Settings = stopfunction
+	else
+		if type(stopfunction) == "function" then 
+			Settings.StopFunction = stopfunction
+		end
+	end
+	if not Settings.StopFunction then 
+		Settings.StopFunction = defaultStopFunction
+	end 
+	if typeof(cf) == "Vector3" then 
+		cf = CFrame.new(cf)
+	end
+	--print(plr:DistanceFromCharacter(cf.Position))
+
+	if plr:DistanceFromCharacter(cf.Position) < Settings.StopDistance then 
+		return --WalkTo(cf.Position)
+	end
+	local Running = true
+	-- spawn(function() 
+	--     while not Settings.NoRotate and Running and task.wait() do 
+			
+	--     end
+	-- end)
+	
+	local function DistanceNoY(a) 
+		a = Vector3.new(a.X,plr.Character.HumanoidRootPart.Position.Y,a.Z)
+		return plr:DistanceFromCharacter(a)
+	end
+	local UserInputService = game:GetService("UserInputService")
+	local firsttime = true
+	local start = tick()
+	while not Settings.StopFunction() do
+		if not IsPlayerAlive() then break end
+		if not Settings.DiThuyen then 
+			if plr.Character.Humanoid.SeatPart ~= nil then 
+				SendKey("Space",true)
+				wait()
+				SendKey("Space",false)
+			end
+		end
+		if tick() - start > Settings.Timeout then
+			return "Timeout"
+		end
+		local newPosition = Vector3.new(cf.X,plr.Character.HumanoidRootPart.Position.Y,cf.Z)
+		local dir = (newPosition - plr.Character.HumanoidRootPart.Position).unit
+		dir = Vector3.new(dir.X,(Settings.LookDown and -1) or 0,dir.Z)
+		local newlookvec = Vector3.new(game.Workspace.CurrentCamera.CFrame.lookVector.X,(Settings.LookDown and -1) or 0,game.Workspace.CurrentCamera.CFrame.lookVector.Z)
+		if not Settings.NoRotate then 	
+			if true then 
+				if not firsttime then
+					rotateCameraToDirection(dir,true)  
+				else
+					rotateCameraToDirection(dir) 
+				end
+				firsttime = false
+			end
+		end
+		
+		if false and (newlookvec:Dot(dir)) < 0.9 and plr:DistanceFromCharacter(cf.p) > 5 then 
+			rotateCameraToDirection(dir) 
+			SendKey("W",false)
+			SendKey("W",false)
+		else
+			local DontWalk
+			if not IsPlayerAlive() then return SendKey("W",false) end 
+			if not Settings.UnderWater and plr.Character.Head:FindFirstChild("BillboardGui") then 
+				SendKey("Space",true)
+				wait(.1)
+				SendKey("Space",false)
+			end
+			if not Settings.UnderWater and plr.Character.HumanoidRootPart:FindFirstChild("SwimPosition") then 
+				if math.abs(plr.Character.HumanoidRootPart.SwimPosition.Position.Y - (-2.718)) > 0.01 then 
+					SendKey("Space",true)
+					wait(.1)
+					SendKey("Space",false)
+				end
+			end
+			if not IsPlayerAlive() then return end 
+
+			if Settings.UnderWater then 
+				if math.abs(plr.Character.HumanoidRootPart.Position.Y - cf.Y) > 3 then 
+					local SendControl = false
+					if cf.Y < plr.Character.HumanoidRootPart.Position.Y then 
+						SendControl = true
+					else
+						SendControl = false
+					end
+					SendKey("LeftControl",SendControl)
+					SendKey("Space",not SendControl)
+					wait(.2)
+				else
+					SendKey("LeftControl",false)
+					SendKey("Space",false)
+				end
+			else
+				local WallHeight = CheckWall(cf)
+				if  WallHeight > 0 then 
+					if plr.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Seated and not IsClimbing() then 
+						local IsFalling = plr.Character.Humanoid:GetState() == Enum.HumanoidStateType.Freefall
+						if WallHeight >= 1 then 
+							if plr.Character.HumanoidRootPart:FindFirstChild("BillboardGui") then 
+								SendKey("Space",false)
+							else
+								SendKey("Space",true)
+							end
+						end
+						if WallHeight > 3 and math.abs(plr.Character.HumanoidRootPart.Position.Y - cf.Y) > 5  then 
+							if plr.Character.HumanoidRootPart:FindFirstChild("BillboardGui") then 
+								DontWalk = true
+							else
+								if tick() - LastNoWall > 1 then 
+                                    local Raycast = RaycastWhitelist({workspace.Islands},plr.Character.HumanoidRootPart.Position,Vector3.new(0,-100,0))
+                                    if not Raycast or plr:DistanceFromCharacter(Raycast.Position) >= 11 then 
+                                        SendKey("W",false)
+                                        local wall = CheckWall(plr.Character.HumanoidRootPart.CFrame, true)
+                                        SendKey("W",true)
+                                        LastClimb = true
+                                        SendKey("LeftControl",true)
+                                        SendKey("Space",false)
+                                        if wall then
+                                            RotateToPosition(wall.CFrame)
+                                        end
+                                        wait(.2)
+                                    end
+								end
+							end
+						else
+							LastNoWall = tick()
+						end
+					else
+						if WallHeight < 10 then LastNoWall = tick() end
+						SendKey("Space",true)
+					end
+				else
+					LastNoWall = tick()
+					if not IsClimbing() then 
+						if LastClimb or UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then 
+							wait(.6)
+							--print("nangg")
+						end
+						LastClimb = false
+						SendKey("LeftControl",false)
+					end
+					SendKey("Space",false)
+				end
+			end
+			
+			if (newlookvec:Dot(dir) > 0.9 and plr.Character.Humanoid.MoveDirection.magnitude == 0 and not DontWalk) or IsClimbing() then 
+				SendKey("W",true)
+				if plr:DistanceFromCharacter(cf.p) > 50  then 
+					SendKey("W",true)
+				else
+					SendKey("W",false)
+					SendKey("W",true)
+				end
+				wait()
+			end
+			if (DontWalk or newlookvec:Dot(dir) < 0.9) and not IsClimbing() then 
+				--print(DontWalk)
+				--print("huy rui ha hhuhu")
+				wait(.2)
+				SendKey("W",false)
+			end
+			if not DontWalk and plr:DistanceFromCharacter(cf.p) > 50 and newlookvec:Dot(dir) > 0.99 and not IsClimbing() and math.abs(plr.Character.HumanoidRootPart.Position.Y - cf.Y) < 5 then 
+				SendKey("Q",true)
+				wait()
+				SendKey("Q",false)
+			end
+			if not Settings.DistanceNoY then 
+				if not IsPlayerAlive() or plr:DistanceFromCharacter(cf.Position) < Settings.StopDistance and math.abs(plr.Character.HumanoidRootPart.Position.Y - cf.Position.Y) < 5 then 
+					if not dontstop then 
+						SendKey("W",false)
+						wait()
+						SendKey("W",false)
+					end
+					Running = false
+					break
+				end
+			else
+				if not IsPlayerAlive() or DistanceNoY(cf.Position) < Settings.StopDistance and math.abs(plr.Character.HumanoidRootPart.Position.Y - cf.Position.Y) < 10 then 
+					if Settings.GoDown then 
+						if (plr.Character.HumanoidRootPart.Position.Y - cf.Position.Y) < 1 then 
+							if not dontstop then 
+								SendKey("W",false)
+								wait()
+								SendKey("W",false)
+							end
+							Running = false
+							break
+						end
+					else
+						if not dontstop then 
+							SendKey("W",false)
+							wait()
+							SendKey("W",false)
+						end
+						Running = false
+						break
+					end
+				end
+			end
+		end
+		task.wait()
+	end
+	if not dontstop then 
+		SendKey("W",false)
+		wait()
+		SendKey("W",false)
+	end
+	Running = false
+	return Settings.StopFunction() 
+end
+function Walk(cf,stopfunction,dontstop)
+	local s, e = pcall(function()
+		WalkR(cf,stopfunction,dontstop)
+	end)
+	if not s then print(e) return SendKey("W",false) end
+end
+local PathfindingService = game:GetService("PathfindingService")
+
+local folder = workspace:FindFirstChild("Program") or Instance.new("Folder",workspace)
+folder.Name = "Program"
+function CreateLink(name,pos1,pos2)
+	if folder:FindFirstChild(name) then return end
+	local link = Instance.new("PathfindingLink", folder)
+	local Part0 = Instance.new("Part",folder)
+	Part0.CFrame = pos1
+	Part0.Anchored = true
+	Part0.CanCollide = false
+	Part0.Transparency = 0
+	Part0.Size = Vector3.new(1,1,1)
+	local Part1 = Instance.new("Part",folder)
+	Part1.CFrame = pos2
+	Part1.Anchored = true
+	Part1.CanCollide = false
+	Part1.Transparency = 0
+	Part1.Size = Vector3.new(1,1,1)
+	local attachment0 = Instance.new("Attachment",Part0)
+	local attachment1 = Instance.new("Attachment",Part1)
+	attachment0.CFrame = pos1
+	attachment1.CFrame = pos2
+
+	link.Attachment0 = attachment0
+	link.Attachment1 = attachment1
+	link.IsBidirectional = false
+	link.Label = name
+	link.Name = name
+	return link
+end
+--CreateLink("Climb1",CFrame.new(1043.6297607421875, 55.999977111816406, 1016.8250732421875),CFrame.new(1041.8460693359375, 90.09996795654297, 1017.6748046875))
+--wait(1)
+
+local path = PathfindingService:CreatePath({
+	AgentRadius = 2,
+	AgentHeight = 4,
+	AgentCanJump = true,
+	Costs = {
+		Climb2 = .1
+	},
+	WaypointSpacing = 4
+})
+local pathNoJump = PathfindingService:CreatePath({
+	AgentRadius = 2,
+	AgentHeight = 4,
+	AgentCanJump = false,
+	Costs = {
+		PathFindingModifier = math.huge
+	},
+	WaypointSpacing = 4
+})
+local pathNoClimb = PathfindingService:CreatePath({
+	AgentRadius = 2,
+	AgentHeight = 4,
+	AgentCanClimb = false,
+	Costs = {
+		Climb2 = .1
+	},
+	WaypointSpacing = 4
+})
+local FarmPos1,FarmPos2 = Vector3.new(1022.4658203125, 7.999986171722412, 1184.24755859375),Vector3.new(1016.9317016601562, 8.99998664855957, 1214.594970703125)
+local SarahPosition = CFrame.new(1009.720458984375, 8.999988555908203, 1179.4952392578125)
+local TruocCuaRifleShop = CFrame.new(1010.4630126953125, 21.75067138671875, 1143.3602294921875)
+local BenTrongRifleShop = CFrame.new(998.8861083984375, 21.75066375732422, 1146.2457275390625)
+local RifleShop = CFrame.new(998.5175170898438, 9.092550277709961, 1134.61669921875)
+local DuoiChanCauThang = CFrame.new(1010.7587280273438, 8.999984741210938, 1119.6407470703125)
+local ChoBanThuyen = CFrame.new(984.92236328125, 8.999985694885254, 968.4583740234375)
+local ThaThuyenODayNha = CFrame.new(DatThuyen["TownOf"])
+--local ClickVaoPartNayDeMuaThuyenNe = workspace.BuyableItems.Rowboat.ShopPart
+function plrCf() 
+	return plr.Character.HumanoidRootPart.CFrame
+end
+local mouse = game.Players.LocalPlayer:GetMouse()
+local VirtualInputManager = GetService("VirtualInputManager")
+function Click() 
+	local inset = game:GetService("GuiService"):GetGuiInset()
+	VirtualInputManager:SendMouseMoveEvent(mouse.x+inset.X,mouse.y+inset.Y,game)
+	VirtualInputManager:SendMouseButtonEvent(mouse.x+inset.X,mouse.y+inset.Y,0,true,nil,0)
+	wait(math.random(0.1,0.3))
+	VirtualInputManager:SendMouseButtonEvent(mouse.x+inset.X,mouse.y+inset.Y,0,false,nil,0)
+end
+
+function Wheel(zoomin) 
+	if zoomin then 
+		SendKey("I",true)
+		wait(math.random(0.1,0.3))
+		SendKey("I",false)
+	else
+		SendKey("O",true)
+		wait(math.random(0.1,0.3))
+		SendKey("O",false)
+	end
+	-- local inset = game:GetService("GuiService"):GetGuiInset()
+	-- GetService("VirtualInputManager"):SendMouseWheelEvent(mouse.x+inset.X,mouse.y+inset.Y,zoomin,nil)
+end
+function ZoomMin() 
+	local t = tick()
+	while plr:DistanceFromCharacter(workspace.Camera.CFrame.p) > .7 do 
+		Wheel(true)
+		wait(math.random(0.1,0.2))
+	end
+end
+function ZoomMax() 
+	local t = tick()
+	-- while plr:DistanceFromCharacter(workspace.Camera.CFrame.p) > .7 do 
+		
+	-- 	wait(math.random(0.1,0.2))
+	-- end
+	for i = 1,5 do Wheel(false) end
+end
+local OctreeObj = RequireOctree()
+
+local Octree = OctreeObj.new(Vector3.new(846.7831420898438, 60.999984741210938, 929.84716796875), Vector3.new(1208.875732421875, 0.9190256595611572, 1451.590087890625))
+for k,v in Paths do
+	if #v > 0 then 
+		Octree:Insert(k,k)
+	end
+end
+
+local FishmanOctree = {}
+function FishmanOctree:GetNearestNeighbor(pos) 
+	local min
+	for k,v in FishManPath do 
+		if not min then 
+			min = k
+		end
+		if (pos - k).magnitude < (pos - min).magnitude then 
+			min = k
+		end
+	end
+	return min
+end
+
+local OctreeODuoiNuoc = {}
+function OctreeODuoiNuoc:GetNearestNeighbor(pos) 
+	local min
+	for k,v in PathODuoiNuoc do 
+		if not min then 
+			min = k
+		end
+		if (pos - k).magnitude < (pos - min).magnitude then 
+			min = k
+		end
+	end
+	return min
+end
+
+local OctreeDiThuyen = {}
+function OctreeDiThuyen:GetNearestNeighbor(pos,max_dist,thuyen) 
+	local min
+	for k,v in PathDiThuyen do 
+		if not min then 
+			min = k
+		end
+		-- if thuyen then 
+		-- 	local direction = (thuyen - k).unit
+		-- 	local direction2 = (k-plr.Character.HumanoidRootPart.Position).unit
+		-- 	local dot_product = (direction.X * direction2.X) + (direction.Z * direction2.Z)
+		-- 	if dot_product > 0 then 
+		-- 		if (pos - k).magnitude < (pos - min).magnitude then 
+		-- 			min = k
+		-- 		end
+		-- 	end
+		-- else
+		-- 	if (pos - k).magnitude < (pos - min).magnitude then 
+		-- 		min = k
+		-- 	end
+		-- end
+		if (pos - k).magnitude < (pos - min).magnitude then 
+			min = k
+		end
+	end
+	return min
+end
+
+local OctreeOtherIsland = {}
+function OctreeOtherIsland:GetNearestNeighbor(pos,max_dist) 
+	local min
+	for k,v in PathOtherIsland do 
+		if not min then 
+			min = k
+		end
+		if (pos - k).magnitude < (pos - min).magnitude then 
+			min = k
+		end
+	end
+	return min
+end
+-- for k,v in FishManPath do
+-- 	if #v > 0 then 
+-- 		FishmanOctree:Insert(k,k)
+-- 	end
+-- end
+function IsStringNullOrEmpty(str)
+	return str == nil or str == ""
+end
+function PathFind(pos1,pos2,Paths,Octree,max_dist)
+	if not max_dist then max_dist = 1000 end
+	local NearessPos1Node,NearessPos2Node = Octree:GetNearestNeighbor(pos1,nil,pos2), Octree:GetNearestNeighbor(pos2)
+	if plr:DistanceFromCharacter(NearessPos1Node) > max_dist then 
+		return {pos2},pos2,pos2,pos2
+	end
+	return aStar(NearessPos1Node,NearessPos2Node,Paths),NearessPos1Node,pos2,NearessPos2Node
+end
+function DriveBoatPathFind(destination,stopfunc) 
+	local Path,Start,End,NodeNearestEnd = PathFind(plr.Character.HumanoidRootPart.Position,destination,PathDiThuyen,OctreeDiThuyen,math.huge)
+	if Path then
+		--print("Path")
+		if DriveBoat(Start,stopfunc) == "StopFunc" then return end
+		for k,v in Path do 
+			if not IsPlayerAlive() then return end
+			if DriveBoat(v,stopfunc) == "StopFunc" then return end
+		end
+		if DriveBoat(End,stopfunc) == "StopFunc" then return end
+	end
+end
+function WalkPathFind2(destination,stop,Settings) 
+	if typeof(destination) == "CFrame" then destination = destination.p end
+	if not Settings then 
+		Settings = {
+			StopFunction = stop,
+			Timeout = 7,
+			Path = Paths,
+			Octree = Octree,
+			WalkFunction = Walk
+		}
+	end
+	if not Settings.Path then Settings.Path = Paths end
+	if not Settings.Octree then Settings.Octree = Octree end
+	if not Settings.WalkFunction then Settings.WalkFunction = Walk end
+	if stop and type(stop) == "function" then 
+		Settings.StopFunction = stop
+	end
+	Settings.Timeout = 7
+	if not Settings.StopFunction then 
+		Settings.StopFunction = defaultStopFunction
+	end
+	local Path,Start,End,NodeNearestEnd = PathFind(plr.Character.HumanoidRootPart.Position,destination,Settings.Path,Settings.Octree)
+	if Path then 
+		Settings.WalkFunction(Start,Settings,true)
+		for k,v in Path do 
+			if not IsPlayerAlive() then return end
+			if Settings.WalkFunction(v,Settings,true) == "Timeout" then 
+				SendKey("W",false)
+				return WalkPathFind2(destination,stop,Settings)
+			end
+			if Settings.StopFunction() then 
+				SendKey("W",false)
+				return
+			end
+		end
+	end
+	SendKey("W",false)
+	Settings.WalkFunction(destination,Settings)
+	if plr:DistanceFromCharacter(destination) > 5 then 
+		WalkTo(destination,Settings.StopFunction)
+	end
+end
+function WalkPathFind23(destination,stop,Settings)
+	local path = path
+	if not Settings then 
+		Settings = {
+			StopFunction = stop,
+			Timeout = 7
+		}
+	else
+		Settings.StopFunction = stop
+	end
+	Settings.Timeout = 7
+	if stop then
+		if type(stop) == "table" then 
+			Settings = stop
+			if not Settings.StopFunction then 
+				Settings.StopFunction = defaultStopFunction
+			end
+		else
+			Settings.StopFunction = stop
+		end
+	elseif not Settings.StopFunction then
+		Settings.StopFunction = defaultStopFunction
+	end
+	if Settings.NotJumpAllowed then 
+		--print("K biet nhay dauu")
+		path = pathNoJump
+	end
+	if Settings.NotClimbAllowed then 
+		path = pathNoClimb
+	end
+	if not stop then stop = function() return false end end
+	if not Settings.BuyRifle then 
+		if plr:DistanceFromCharacter(RifleShop.p) < 20 or  plr:DistanceFromCharacter(BenTrongRifleShop.p) < 10 then
+			if math.abs(plrCf().Y - RifleShop.Y) < 3 then 
+				WalkTo(CFrame.new(985.1810913085938, 9.092550277709961, 1130.0919189453125))
+				WalkTo(CFrame.new(984.15673828125, 21.75065040588379, 1151.56201171875))
+			end
+			if not WalkPathFind2(BenTrongRifleShop,Settings.StopFunction,{
+				StopFunction = Settings.StopFunction,
+				BuyRifle = true,
+				--DistanceNoY = true,
+				StopDistance = 6
+			}) then 
+				WalkTo(TruocCuaRifleShop)
+				--Walk(TruocCuaRifleShop)
+			end
+		end
+	end
+	if typeof(destination) == "Vector3" then 
+		destination = CFrame.new(destination)
+	end 
+	if plr:DistanceFromCharacter(destination.p) < 5 then return Walk(destination,Settings) end
+	
+	local function CheckDirectWalk() 
+		if math.abs(plrCf().Y - destination.Y) > 10 then return end
+		local ray = Ray.new(plr.Character.HumanoidRootPart.Position, (destination.p-plr.Character.HumanoidRootPart.Position).unit*plr:DistanceFromCharacter(destination.p))
+		local thieutvknang = workspace:FindPartOnRayWithIgnoreList(ray, {game.Workspace.NPCs,plr.Character})
+		if thieutvknang then 
+		else
+			Settings.StopDistance = 10
+			Walk(destination,Settings)
+			wait()
+			WalkTo(destination,Settings.StopFunction)
+			wait()
+			return true 
+		end
+	end
+	--if CheckDirectWalk() then print("Direct walk") return end
+	local Players = game:GetService("Players")
+	local RunService = game:GetService("RunService")
+	
+	
+	
+	local player = Players.LocalPlayer
+	local character = player.Character
+	local humanoid = character.Humanoid
+	
+	local TEST_DESTINATION = Vector3.new(100, 0, 100)
+	
+	local waypoints
+	local nextWaypointIndex
+	local reachedConnection
+	local blockedConnection
+	
+	local function followPath(destination)
+		-- Compute the path
+		local success, errorMessage = pcall(function()
+			--print("started compute")
+			path:ComputeAsync(plr.Character.HumanoidRootPart.Position, destination.p)
+			--print("compute xong")
+		end)
+		local old = Settings.StopFunction
+		if success and path.Status == Enum.PathStatus.Success then
+			-- Get the path waypoints
+			waypoints = path:GetWaypoints()
+	
+			-- Detect if path becomes blocked
+			for k,v in pairs(waypoints) do
+				if k > 1 then 
+					local Spacing = false
+					if not Settings.NoJump and v.Action == Enum.PathWaypointAction.Jump then
+						SendKey("Space",true)
+						Spacing = true
+						--print("jumped")
+					else
+						--Walk(CFrame.new(v.Position),stop,true) 
+					end
+					-- local part = Instance.new("Part",workspace)
+					-- part.Anchored = true
+					-- part.Size = Vector3.new(5,5,5)
+					-- part.CanCollide = false
+					-- part.CFrame = CFrame.new(v.Position)
+					-- part.Material = Enum.Material.Neon 
+					local Started = tick()
+
+					Settings.StopFunction = function() 
+						if old() then return true end
+						if tick() - Started > 5 then 
+							return "Timeout"
+						end
+						return old() or tick() - Started > 5
+					end
+					if Walk(CFrame.new(v.Position),Settings,true) == "Timeout" then 
+						--print("Suc vat rua")
+						--SendKey("W",false)
+						WalkTo(CFrame.new(v.Position),old)
+						SendKey("W",false)
+						Settings.StopFunction = old
+						return followPath(destination)
+					end
+					--part:Destroy()
+					--SendKey("Space",false)
+					-- --if CheckDirectWalk() then break end
+					-- Walk(CFrame.new(v.Position),stop,true) 
+						if Spacing then 
+						SendKey("Space",false) end
+						if old() then SendKey("W",false) break end
+				end
+			end
+			SendKey("W",false)
+			if plr:DistanceFromCharacter(destination.p) < 7 then 
+				WalkTo(destination.p)
+			end
+		else
+			warn("Path not computed!", errorMessage,path.Status)
+			return true
+		end
+	end
+	return followPath(destination)
+	-- repeat wait() until nextWaypointIndex>=#waypoints
+end
+
+function CheckInven(item) 
+	local Items = game:GetService("HttpService"):JSONDecode(data.Inventory.Inventory.Value)
+	return Items[item]
+end
+function GetRifle() 
+	return plr.Backpack:FindFirstChild("Rifle") or plr.Character:FindFirstChild("Rifle") 
+end
+
+function GetCurrentQuest()
+	return tostring(data.Quest.CurrentQuest.Value)
+end
+function GetQuest(stop) -- stop return true => stop
+	if not stop then 
+		stop = defaultStopFunction
+	end  
+	local StartedGetQuest = tick()
+	repeat wait()
+		SendKey("T",true)
+	until plr.PlayerGui:FindFirstChild("NPCCHAT") or tick() - StartedGetQuest > 5 or stop()
+	SendKey("T",false)
+	-- repeat wait()
+	-- 	ContinueNPCChat()
+	-- until not plr.PlayerGui:FindFirstChild("NPCCHAT") or stop()
+end
+local function GetNeak()
+	if game.workspace.Effects:FindFirstChild("Folder") then
+		for i, v in ipairs(game.workspace.Effects.Folder:GetDescendants()) do
+			if v.Name == "Part" and v.Parent.Name == "Folder" and v:FindFirstChild("Mesh") and v.Mesh.TextureId == "http://www.roblox.com/asset/?id=28461501" and v:FindFirstChild("ClickDetector") then
+				return v
+			end
+		end
+	end
+end
+
+function GetNearestMob(name)
+	local NearestFishman 
+	for k,v in pairs(game.Workspace.NPCs:GetChildren()) do 
+		if v.Name == name and IsMobAlive(v) then 
+			if not NearestFishman then 
+				NearestFishman = v 
+			end
+			if plr:DistanceFromCharacter(v.HumanoidRootPart.Position) < plr:DistanceFromCharacter(NearestFishman.HumanoidRootPart.Position) then 
+				NearestFishman = v 
+			end
+		end
+	end
+	return NearestFishman
+end
+function GetNearestFishman()
+	local NearestFishman 
+	for k,v in pairs(game.Workspace.NPCs:GetChildren()) do 
+		if Settings.LevelFarm and v.Name == "Fishman Karate User" and IsMobAlive(v) and IsPlayerAlive() then 
+			if not NearestFishman then 
+				NearestFishman = v 
+			end
+			if plr:DistanceFromCharacter(v.HumanoidRootPart.Position) < plr:DistanceFromCharacter(NearestFishman.HumanoidRootPart.Position) then 
+				NearestFishman = v 
+			end
+		end
+	end
+	return NearestFishman
+end
+local LastWalked = 0
+local abc = false
+local SettingsLevelFarmCheck = function() 
+	return Settings.LevelFarm == false
+end
+local function GetNearestChest()
+	if not IsPlayerAlive() then return end 
+	local Chest
+	for i, v in ipairs(game.workspace.Env:GetChildren()) do
+		if plr.Character:FindFirstChild("HumanoidRootPart") and v.Name == "Chest" and v:IsA("Model") and v:FindFirstChild("MeshPart") and not v:FindFirstChild("Blacklisted") then
+			if not Chest then
+				Chest=v 
+			end
+			if (v.MeshPart.Position - plr.Character.HumanoidRootPart.Position).magnitude<(Chest.MeshPart.Position - plr.Character.HumanoidRootPart.Position).magnitude then 
+				Chest=v 
+			end
+		end
+	end
+	return Chest
+end
+local mouse = plr:GetMouse()
+
+function Collect(item) 
+	plr.Character.Humanoid:UnequipTools()
+	ZoomMin()
+	local dir = (item.CFrame.p - plr.Character.HumanoidRootPart.Position).unit
+	rotateCameraToDirection(dir)
+	
+	for i = 1,5 do 
+		local pos = workspace.CurrentCamera:WorldToScreenPoint(item.Position)
+		ClickAtPosition(pos,false,true)
+		--CenterClick()
+	end
+	wait(3)
+	if not item or not item.Parent then
+		for i = 1, 5 do
+			Wheel(false)
+			wait(math.random(0.1,0.2))
+		end
+	end
+end
+function RotateToPosition(cf, nowait,usehead) 
+	local dir 
+	if usehead then 
+		dir = (cf.p - plr.Character.Head.Position).unit
+	else
+		dir = (cf.p - workspace.Camera.CFrame.Position).unit
+	end
+	return rotateCameraToDirection(dir, nowait)
+end
+function RandomPartPosition(part) 
+	local pos = part.Position --+ part.Velocity * 0.5
+	local x = pos.X + math.random(-.3,.3)--math.random(-part.Size.X/2,part.Size.X/2)
+	local y = pos.Y + math.random(-.3,.3)--math.random(-part.Size.Y/2,part.Size.Y/2)
+	local z = pos.Z + math.random(-.3,.3)--math.random(-part.Size.Z/2,part.Size.Z/2)
+	return Vector3.new(x,y,z)
+end
+
+
+
+function Equiped(item) return plr.Character:FindFirstChild(item) end
+function Equip(item) 
+	if plr.Backpack:FindFirstChild(item) then 
+		plr.Character.Humanoid:EquipTool(plr.Backpack[item])
+	end 
+end
+
+
+function CenterClick() 
+	ClickAtPosition(workspace.CurrentCamera.ViewportSize/2,true,true)
+end
+function IsThereAnyAvaliableShipForPlayer() 
+	--huhu ten func trum vai
+	return workspace.Ships:FindFirstChild(plr.Name.."Ship") and workspace.Ships[plr.Name.."Ship"]:FindFirstChild("VehicleSeat") and plr:DistanceFromCharacter(workspace.Ships[plr.Name.."Ship"].VehicleSeat.Position) < 40
+end
+function CanAddGunPoint() 
+	if data.Stats.SkillPoints.Value >= 10 then 
+		if data.Stats.GunMastery.Value < 655 then 
+			return true
+		end
+	end
+end
+function AddGunPoint() 
+	local Stats = plr.PlayerGui.Main.Stats
+	if plr.PlayerGui:FindFirstChild("NPCCHAT") then return end
+
+	while data.Stats.SkillPoints.Value > 0 do 
+		if plr.PlayerGui:FindFirstChild("NPCCHAT") then return end
+		if Stats.Visible then
+			pcall(function() 
+				for k,v in pairs(getconnections(plr.PlayerGui.Main.Stats.Frame.GunMastery.TextButton.MouseButton1Click)) do 
+					v:Fire()
+				end
+			end)
+		else
+			if not plr.PlayerGui.Main.Buttons.Visible then 
+				SendKey("M",true)
+				wait()
+				SendKey("M",false)
+			else
+				ClickGui(plr.PlayerGui.Main.Buttons.Frame.Stats.ImageLabel)
+			end
+		end
+		wait()
+	end
+	if Stats.Visible or plr.PlayerGui.Main.Buttons.Visible then 
+		SendKey("M",true)
+		wait()
+		SendKey("M",false)
+	end
+end
+function SpawnBoat(stopfunc) 
+	while not IsThereAnyAvaliableShipForPlayer() and not stopfunc() do 
+		if plr.PlayerGui:FindFirstChild("NPCCHAT") then return end
+		if not plr.PlayerGui.Main.Buttons.Visible then 
+			SendKey("M",true)
+			wait()
+			SendKey("M",false)
+		else
+			ClickGui(plr.PlayerGui.Main.Buttons.Frame.boat.ImageLabel)
+		end
+		wait(.5)
+	end
+	if plr.PlayerGui.Main.Buttons.Visible then 
+		SendKey("M",true)
+		wait()
+		SendKey("M",false)
+	end
+end
+getgenv().EquipItem = function(ItemName1,ItemName2,stopfunc) 
+	local Inventory = plr.PlayerGui.Main.Inventory
+	if plr.PlayerGui:FindFirstChild("NPCCHAT") then return end
+
+	while not stopfunc() do 
+		if plr.PlayerGui:FindFirstChild("NPCCHAT") then return end
+		if Inventory.Visible then
+			if Inventory.Desc.Visible and Inventory.Desc.ItemName.Text == ItemName1 then
+				if Inventory.Desc.Equip.Text == "Equip" then 
+					ClickGui(Inventory.Desc.Equip)
+				end
+			else
+				if Inventory.Section.ScrollingFrame:FindFirstChild(ItemName2) then 
+					ClickGui(Inventory.Section.ScrollingFrame[ItemName2].Frame)
+				end
+			end
+		else
+			if not plr.PlayerGui.Main.Buttons.Visible then 
+				SendKey("M",true)
+				wait()
+				SendKey("M",false)
+			else
+				ClickGui(plr.PlayerGui.Main.Buttons.Frame.Inventory.ImageLabel)
+			end
+		end
+		wait(.5)
+	end
+	if Inventory.Visible or plr.PlayerGui.Main.Buttons.Visible then 
+		SendKey("M",true)
+		wait()
+		SendKey("M",false)
+	end
+end
+getgenv().EquipRifleFromInv = function(stopfunc) 
+	EquipItem("Rifle","GunRifle",function() 
+		return GetRifle() or Settings.LevelFarm == false
+	end)
+end
+function ContinueNPCChat() 
+	if plr.PlayerGui:FindFirstChild("NPCCHAT") then 
+		if plr.PlayerGui.NPCCHAT:FindFirstChild("Frame") and plr.PlayerGui.NPCCHAT.Frame:FindFirstChild("go") and plr.PlayerGui.NPCCHAT.Frame:FindFirstChild("endChat") then 
+			if plr.PlayerGui.NPCCHAT.Frame.endChat.Visible then
+				ClickGui(plr.PlayerGui.NPCCHAT.Frame.endChat)
+			else
+				ClickGui(plr.PlayerGui.NPCCHAT.Frame.go)
+			end
+		end
+	end
+end
+spawn(function() 
+	while wait() do ContinueNPCChat() end
+end)
+function BuyItem(ShopPart) 
+	local StartedBuyItem = tick()
+	repeat wait()
+		ZoomMin()
+		plr.Character.Humanoid:UnequipTools()
+		RotateToPosition(ShopPart.CFrame)
+		local pos = workspace.CurrentCamera:WorldToScreenPoint(ShopPart.Position)
+		CenterClick()
+		ContinueNPCChat()
+	until not plr.PlayerGui:FindFirstChild("NPCCHAT") or tick() - StartedBuyItem > 5
+	wait(1)
+end
+local ListNeakPosition = {
+	CFrame.new(981.7684326171875, 8.999987602233887, 1369.9119873046875),
+	CFrame.new(838.4411010742188, 7.999986171722412, 1342.98388671875),
+	CFrame.new(855.5440063476562, 7.999986171722412, 1114.9029541015625),
+	CFrame.new(1049.372802734375, 7.999986171722412, 1103.724853515625),
+	CFrame.new(944.6918334960938, 8.999984741210938, 1207.664794921875)
+}
+local FishmanCavePosition = Vector3.new(5682.19, 5, -16458.479)
+local SellBubble = Vector3.new(5667.45654296875, 4.570835113525391, -16464.9921875)
+local FishmanQuestPosition = Vector3.new(7733.1767578125, -2175.83203125, -17222.99609375)
+local FishmanSetSpawnPosition = Vector3.new(7974.32080078125, -2152.83203125, -17076.072265625)
+local FishmanDungBan = Vector3.new(7841.31884765625, -2151.33203125, -17135.5703125)
+function SendHook(fields,Url)
+	if not Url then Url = Settings.WebHookUrl end
+
+	local HttpService = game:GetService("HttpService")
+	local tb = {
+		["content"] = "",
+		["embeds"] = {{
+			["title"] = "Grand Piece Online",
+			["type"] = "rich",
+			["color"] = tonumber(0xbdce44),
+			["fields"] = fields,
+			["footer"] = {
+				["icon_url"] = "https://cdn.discordapp.com/attachments/832985237638086660/843786018892939284/turtle.png",
+				["text"] = "Sea Hub (" .. os.date("%X") .. ")"
+			}
+		}}
+	}
+	
+	local a =
+		request(
+		{
+			Url = Url,
+			Method = "POST",
+			Body = HttpService:JSONEncode(tb),
+			Headers = {
+				["Content-Type"] = "application/json"
+			}
+		}
+	)
+	return a.Body
+end
+function SendStatus(status,Url) 
+	if not Settings.WebHookUrl then return end
+	if not Settings.Webhook then return end
+	if not Url then Url = Settings.WebHookUrl end
+	spawn(function() 
+		SendHook({
+			{
+				["name"] = "Name",
+				["value"] = "||" .. plr.Name .. "||",
+				["inline"] = false
+			},
+			{
+				["name"] = "Level Farm Status:",
+				["value"] = status,
+				["inline"] = false
+			}
+		})
+	end)
+end
+
+local FarmScreen = Instance.new("ImageLabel", game.CoreGui:FindFirstChild("PurchasePrompt"))
+FarmScreen.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+FarmScreen.BackgroundTransparency = 1
+FarmScreen.Position = UDim2.new(0, 0, 0, -50)
+FarmScreen.Size = UDim2.new(1, 0, 1, 50)
+FarmScreen.Visible = true
+FarmScreen.Active = false
+getgenv().BS_Text = Instance.new("TextLabel", FarmScreen)
+BS_Text.TextSize = 30
+BS_Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+BS_Text.AnchorPoint = Vector2.new(0.5, 0)
+BS_Text.Position = UDim2.new(0.5, 0, 0.6, 0)
+BS_Text.Font = Enum.Font.SourceSansBold
+BS_Text.Active = false
+BS_Text.RichText = true
+local BS_TextDef = '<font size="40">Press L to disable Level Farm</font>'
+BS_Text.Text = BS_TextDef
+game:GetService("UserInputService").InputBegan:Connect(function(Input)
+	if Input.KeyCode == Enum.KeyCode.L then
+		LevelFarmToggle.SetStage(false)
+	end
+end)
+getgenv().UpdateStatusText = function(v)
+	BS_Text.Text = BS_TextDef .. '\n<font size="25">' .. v .. '</font>'
+end
+
+local Islandszz = {
+	["Town of Beginnings"] = CFrame.new(965.146, 10, 1195.127),
+	["Fishman Cave"] = CFrame.new(5682.19, 5, -16458.479),
+}
+getgenv().AddedESP = {}
+
+spawn(function()
+	while true do
+		if Settings.LevelFarm then
+			if game:GetService("CoreGui").RobloxGui:FindFirstChild("SettingsShield") and game:GetService("CoreGui").RobloxGui.SettingsShield.SettingsShield.Visible then
+				wait(5)
+				SendKey("Escape", true)
+				wait(.1)
+				SendKey("Escape", false)
+			elseif GuiToggled then
+				ToggleGUI()
+			end
+		elseif not GuiToggled and not Settings.LevelFarm then
+			SendKey("O", true)
+			wait(.1)
+			SendKey("O", false)
+			ToggleGUI()
+		end
+		pcall(function()
+			if Settings.LevelFarm
+			and workspace.Ships:FindFirstChild(plr.Name.."Ship")
+			and plr.Character.Humanoid.SeatPart == workspace.Ships[plr.Name.."Ship"].VehicleSeat then
+				for i, v in pairs(Islandszz) do
+					if not table.find(AddedESP, i) then
+						table.insert(getgenv().AddedESP, i)
+						local Text = Drawing.new("Text")
+						Text.Visible = false
+						Text.Transparency = 1
+						Text.Color = Color3.fromRGB(255, 255, 255)
+						Text.Size = 20
+						Text.Outline = true
+						Text.OutlineColor = Color3.fromRGB(0, 0, 0)
+						Text.Center = true
+						Text.Font = 1
+						spawn(function()
+							pcall(function()
+								repeat wait()
+									local Pos, OnScreen = game.workspace.CurrentCamera:WorldToViewportPoint(v.Position)
+									if OnScreen then
+										Text.Text = i .. " (" .. math.round((v.Position - plr.Character.HumanoidRootPart.Position).magnitude) .. ")"
+										Text.Position = Vector2.new(Pos.X, Pos.Y - 20)
+										Text.Visible = true
+									else
+										Text.Visible = false
+									end
+								until not plr.Character.Humanoid.SeatPart or not Settings.LevelFarm
+							end)
+							Text:Remove()
+							table.remove(AddedESP,table.find(AddedESP, i))
+							--getgenv().AddedESP[i] = nil
+						end)
+					end
+				end
+			end
+		end)
+		if Settings.AcceptCrew and plr.PlayerGui:FindFirstChild("CrewInvite") then
+			ClickGui(plr.PlayerGui.CrewInvite.Frame.Accept)
+			wait(2)
+		end
+		wait(2)
+	end
+end)
+loadstring([[
+    local PlaceID = game.PlaceId
+    local AllIDs = {}
+    local foundAnything = ""
+    local actualHour = os.date("!*t").hour
+    local Deleted = false
+    local File = pcall(function()
+        AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+    end)
+    if not File then
+        table.insert(AllIDs, actualHour)
+        writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+    end
+    function TPReturner()
+        local Site;
+        if foundAnything == "" then
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+        else
+            Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+        end
+        local ID = ""
+        if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+            foundAnything = Site.nextPageCursor
+        end
+        local num = 0;
+        for i,v in pairs(Site.data) do
+            local Possible = true
+            ID = tostring(v.id)
+            if tonumber(v.maxPlayers) > tonumber(v.playing)
+            and tonumber(v.playing) <= 2 then
+                for _,Existing in pairs(AllIDs) do
+                    if num ~= 0 then
+                        if ID == tostring(Existing) then
+                            Possible = false
+                        end
+                    else
+                        if tonumber(actualHour) ~= tonumber(Existing) then
+                            local delFile = pcall(function()
+                                delfile("NotSameServers.json")
+                                AllIDs = {}
+                                table.insert(AllIDs, actualHour)
+                            end)
+                        end
+                    end
+                    num = num + 1
+                end
+                if Possible == true then
+                    table.insert(AllIDs, ID)
+                    wait()
+                    pcall(function()
+                        writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                        wait()
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                    end)
+                    wait(4)
+                end
+            end
+        end
+    end
+    
+    getgenv().TeleportLow = function()
+        -- while wait() do
+        --     pcall(function()
+        --         TPReturner()
+        --         if foundAnything ~= "" then
+        --             TPReturner()
+        --         end
+        --     end)
+        --     wait(10)
+        -- end
+		game:GetService("TeleportService"):Teleport(1730877806, game.Players.LocalPlayer)
+    end
+]])()
+function Shoot(position,MaxZoom,Lookat)
+	if MaxZoom then 
+		ZoomMax()
+	else
+		ZoomMin()
+	end 
+	if not IsPlayerAlive() then return end
+	if Lookat then 
+		RotateToPosition(Lookat,nil,true)
+	else
+		RotateToPosition(position)
+	end
+	
+	if not Equiped("Rifle") then 
+		Equip("Rifle")
+	end
+	if MaxZoom then 
+		ClickAtPosition(workspace.CurrentCamera:WorldToScreenPoint(position.p),false,true)
+	else
+		CenterClick()
+	end
+	SendKey("R",true)
+	SendKey("R",false)
+end
+spawn(function() 
+	while true do 
+		if Settings.Webhook and Settings.OverWebHookUrl then
+			SendHook({
+				{
+					["name"] = "Name",
+					["value"] = "||" .. plr.Name .. "||",
+					["inline"] = false
+				},
+				{
+					["name"] = "Level Farm Status:",
+					["value"] = Status,
+					["inline"] = false
+				},
+				{
+					["name"] = "Level",
+					["value"] = data.Stats.Level.Value,
+					["inline"] = true
+				},
+				{
+					["name"] = "Beli",
+					["value"] = data.Stats.Peli.Value,
+					["inline"] = true
+				}
+			},Settings.OverWebHookUrl)
+		end
+		wait(30)
+	end
+end)
+function CanDoBusoQuest() 
+	if getgenv().TvkDangTest then return true end
+	if data.Stats.BusoMastery.Value > 0 then return false end
+	if data.Stats.Level.Value < 90 then return false end
+	if CanGetQuest("Road to Armament") == "Already doing quest" then 
+		return true
+	else
+		if data.Stats.Peli.Value >= 25000 then return true end
+	end
+end
+function IsPlayerNear(x)
+    local Dist = math.huge
+    local TargetPlayer
+    for i, v in ipairs(game.Players:GetChildren()) do
+        if v.Name ~= plr.Name
+        and v.Character
+        and v.Character:FindFirstChild("HumanoidRootPart")
+        and game.workspace.PlayerCharacters:FindFirstChild(v.Name) then
+            local Mag = (v.Character.HumanoidRootPart.Position - x).magnitude
+            if Mag < Dist then
+                Dist = Mag
+                TargetPlayer = v
+            end
+        end
+    end
+    if TargetPlayer then
+        return (TargetPlayer.Character.HumanoidRootPart.Position - x).magnitude
+    else
+        return 1308
+    end
+end
+local Old =  data.Skills.Rokushiki.Value
+function FarmLevel()
+	if not CheckInven("Rifle") then
+		if data.Stats.Peli.Value >= 300 then
+			UpdateStatusText("Buying Rifle")
+			if plr:DistanceFromCharacter(RifleShop.p) < 10 then 
+				BuyItem(workspace.BuyableItems.Rifle.Stand)
+			else
+				if WalkPathFind2(RifleShop,SettingsLevelFarmCheck,{
+					GoDown = true,
+					DistanceNoY = false,
+					NoJump = true,
+					BuyRifle = true
+				}) then 
+					if not WalkPathFind2(DuoiChanCauThang,SettingsLevelFarmCheck) then 
+						WalkTo(TruocCuaRifleShop,SettingsLevelFarmCheck)
+						WalkTo(BenTrongRifleShop,SettingsLevelFarmCheck)
+					end
+				end
+			end
+		else
+			UpdateStatusText("Farming 300 Peli for Rifle")
+			local chest = GetNearestChest()
+			if not (GetCurrentQuest() == "Find Sarha's necklace" and data.Quest.QuestProgress.Value == 1) and chest and plr:DistanceFromCharacter(chest.MeshPart.CFrame.p) < 1000 then 
+				if WalkPathFind2(chest.MeshPart.CFrame,nil,{
+					StopFunction = function() 
+						return SettingsLevelFarmCheck() or not chest.Parent or not chest:FindFirstChild("MeshPart")
+					end,
+					NotJumpAllowed = true
+				}) then 
+					Instance.new("BoolValue",chest).Name = "Blacklisted"
+				else
+					repeat wait()
+						if chest:FindFirstChild("MeshPart") and plr:DistanceFromCharacter(chest.MeshPart.Position) < 5 then 
+							Collect(chest.MeshPart)
+						else
+							break
+						end
+					until chest or not chest.Parent or not chest:FindFirstChild("MeshPart")
+				end
+			else
+				if GetCurrentQuest()~="Find Sarah's necklace" or (GetCurrentQuest()=="Find Sarah's necklace" and data.Quest.QuestProgress.Value==1) then 
+					if GetCurrentQuest() ~= "Find Sarah's necklace" then 
+						game:GetService("ReplicatedStorage").Events.Quest:InvokeServer({"quit"})
+					end
+					--SarahPosition = CFrame.new(SarahPosition.X,plr.Character.HumanoidRootPart.Position.Y,SarahPosition.Z)
+					if plr:DistanceFromCharacter(SarahPosition.p) > 20 then 
+						WalkPathFind2(SarahPosition,SettingsLevelFarmCheck)
+					elseif plr:DistanceFromCharacter(SarahPosition.p) > 10 then
+						WalkTo(SarahPosition.p,SettingsLevelFarmCheck)
+					else
+						GetQuest(SettingsLevelFarmCheck)
+					end
+				else
+					local Neak = GetNeak()
+					if Neak then 
+						if not WalkPathFind2(Neak.CFrame,SettingsLevelFarmCheck) then 
+							repeat wait()
+								if plr:DistanceFromCharacter(Neak.Position) < 10 then 
+									Collect(Neak)
+								else
+									break
+								end
+							until not Neak or not Neak.Parent
+						end
+					else
+						local LastCheckNeak = tick()
+						WalkPathFind2(ListNeakPosition[math.random(1,#ListNeakPosition)],function() 
+							if tick() - LastCheckNeak > 1 then 
+								LastCheckNeak = tick()
+								Neak = GetNeak()
+							end
+							Wheel(false)
+							return SettingsLevelFarmCheck() or Neak or GetCurrentQuest() == "None" or data.Quest.QuestProgress.Value == 1
+						end,{
+							LookDown = true
+						})
+						wait(1)
+					end
+				end
+			end 
+		end
+	else
+		if (Settings.BusoMax and CanDoBusoQuest()) then 
+			if plr.Character.HumanoidRootPart.Position.Y < -2000 then 
+				local GoUp = Vector3.new(8585.81640625, -2136.123046875, -17087.814453125)
+				if plr:DistanceFromCharacter(GoUp) < 20 then 
+					WalkTo(GoUp)
+				else
+					WalkPathFind2(GoUp,nil,{
+						StopFunction = SettingsLevelFarmCheck,
+						Path = PathODuoiNuoc,
+						Octree = OctreeODuoiNuoc
+					})
+				end
+			else
+				UpdateStatusText("Farming Yeti")
+				local KoriIslandPosition = Vector3.new(-6684.44, 10, 1828.623)
+				if plr:DistanceFromCharacter(KoriIslandPosition) < 1000 then 
+					if not getgenv().GetQuestDone and CanGetQuest("Road to Armament") == "Can get quest" then 
+						local QuestPosition = Vector3.new(-6563.51904296875, 169.4822998046875, 1995.1568603515625)
+						if plr:DistanceFromCharacter(QuestPosition) > 10 then 
+							if plr:DistanceFromCharacter(QuestPosition) > 20 then 
+								WalkPathFind2(QuestPosition,nil,{
+									StopFunction = SettingsLevelFarmCheck,
+									Path = PathOtherIsland,
+									Octree = OctreeOtherIsland
+								})
+							else
+								WalkTo(QuestPosition,SettingsLevelFarmCheck)
+							end
+						else
+							GetQuest(SettingsLevelFarmCheck)
+						end
+					elseif CanGetQuest("Road to Armament") == "Doing other quest" and plr.PlayerGui.Quest.Quest.Visible then
+						ClickGui(plr.PlayerGui.Quest.Quit)
+					else
+						local BusoPosition = Vector3.new(-6646.1025390625, 118.48237609863281, 2099.35400390625)
+						if plr:DistanceFromCharacter(BusoPosition) < 10 then 
+							local MobStandPosition = Vector3.new(-6649.1318359375, 80.32246398925781, 2097.8759765625)
+							local MiddleStandPosition = Vector3.new(-6694.89306640625, 76.4823226928711, 2081.525390625)
+							local Shooted
+							for k,v in workspace.NPCs:GetChildren() do 
+								if v.Name == "Yeti" and IsMobAlive(v) then 
+									if math.abs(v.HumanoidRootPart.Position.Y - 80) < 1 then 
+										if (v.HumanoidRootPart.Position - MiddleStandPosition).magnitude < 40 then 
+											if not v.Info.Target.Value then 
+												local StartedAttack = tick()
+												StartedAttack = tick()
+												repeat wait() Shoot(CFrame.new(RandomPartPosition(v.Head))) until v.Info.Target.Value or tick() - StartedAttack > 5 
+												Shooted = true
+											end
+										end
+									end
+								end
+							end
+							if not Shooted then 
+								local Mob = GetNearestMob("Yeti")
+								if (Mob.HumanoidRootPart.Position - MobStandPosition).magnitude < 10 then 
+									local LookAtPosition = CFrame.new(-6580.42919921875, 118.48237609863281, 2091.948974609375)
+									Shoot(CFrame.new(RandomPartPosition(Mob.Head)),true,LookAtPosition)
+								end
+							end
+						else
+							local PathfindPos = Vector3.new(-6636.56494140625, 118.48237609863281, 2091.863525390625)
+							if plr:DistanceFromCharacter(PathfindPos) > 20 then 
+								WalkPathFind2(PathfindPos,nil,{
+									StopFunction = SettingsLevelFarmCheck,
+									Path = PathOtherIsland,
+									Octree = OctreeOtherIsland
+								})
+							else
+								WalkTo(BusoPosition,SettingsLevelFarmCheck)
+							end
+						end
+					end
+				else
+					UpdateStatusText("Going To Kori Island")
+					local PosDatThuyen,Island = GetDatThuyenPosition()
+					local Path = PathOtherIsland
+					local Octree = OctreeOtherIsland
+					if Island == "TownOf" then 
+						Path = Paths
+						Octree = Octree
+					end
+					local function SendSpace() 
+						SendKey("Space",true)
+					end
+					local function LenThuyen(Pos,Island) 
+						if plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+							if plr.Character.Humanoid.SeatPart ~= nil then 
+								SendSpace()
+							end
+							local StopFunc = function() 
+								SendKey("W",true)
+								wait()
+								SendSpace()
+								if IsPlayerAlive() then
+									local WallHeight = CheckWall(plr.Character.HumanoidRootPart.CFrame)
+									if WallHeight > 0 then 
+										SendSpace()
+									else
+										SendKey("Space",false)
+									end
+								end
+								if not workspace.Ships:FindFirstChild(plr.Name.."Ship") or not workspace.Ships[plr.Name.."Ship"]:FindFirstChild("VehicleSeat") or plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+									return true
+								end
+								return Settings.LevelFarm == false or not workspace.Ships:FindFirstChild(plr.Name.."Ship") or not IsPlayerAlive()
+							end
+							if plr:DistanceFromCharacter(workspace.Ships[plr.Name.."Ship"].VehicleSeat.Position) > 20 then
+								WalkPathFind2(workspace.Ships[plr.Name.."Ship"].VehicleSeat.CFrame,StopFunc,{
+									StopFunction = StopFunc,
+									Path = PathOtherIsland,
+									Octree = OctreeOtherIsland,
+									StopFunction = StopFunc,
+									DiThuyen = true
+								})
+							else
+								WalkTo(workspace.Ships[plr.Name.."Ship"].VehicleSeat.Position,StopFunc,nil,{
+									DiThuyen = true
+								})
+								SendKey("W",false)
+							end
+							SendKey("Space",false)
+						else
+							DriveBoatPathFind(Pos,function() 
+								if IsPlayerAlive() and plr.Character.Humanoid.SeatPart ~= nil and plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+									SendSpace()
+								end
+								if not workspace.Ships:FindFirstChild(plr.Name.."Ship") or not workspace.Ships[plr.Name.."Ship"]:FindFirstChild("VehicleSeat") or plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+									return true
+								end
+								if tick() - getgenv().RaycastDriveBoat > 1 then 
+									getgenv().RaycastDriveBoat = tick()
+									local Raycast = RaycastWhitelist({workspace.Islands},workspace.Ships[plr.Name.."Ship"].VehicleSeat.Position,workspace.Ships[plr.Name.."Ship"].VehicleSeat.CFrame.LookVector * 100)
+									if Raycast then 
+										if Raycast.Instance then 
+											if Raycast.Instance:IsDescendantOf(workspace.Islands[Island]) then 
+												if plr:DistanceFromCharacter(Raycast.Position) < 100 then 
+													return true
+												end
+											end
+										end
+									end
+								end
+								return Settings.LevelFarm == false or plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat
+							end)
+							SendKey("Space",false)
+						end
+						wait(1)
+					end
+					if false and data.Stats.SpawnPoint.Value ~= "Sandora" then
+						if Island == "Sandora" then 
+							local SpawnPoint = Vector3.new(-1315.3685302734375, 10.434853553771973, 1112.8785400390625)
+							if plr:DistanceFromCharacter(SpawnPoint) > 20 then 
+								WalkPathFind2(SpawnPoint,nil,{
+									StopFunction = SettingsLevelFarmCheck,
+									Path = PathOtherIsland,
+									Octree = OctreeOtherIsland
+								})
+							elseif plr:DistanceFromCharacter(SpawnPoint) > 5 then
+								WalkTo(SpawnPoint,SettingsLevelFarmCheck)
+							else
+								GetQuest(SettingsLevelFarmCheck)
+							end
+						else
+							if not IsThereAnyAvaliableShipForPlayer() then 
+								if plr:DistanceFromCharacter(PosDatThuyen) > 20 then 
+									WalkPathFind2(PosDatThuyen,nil,{
+										StopFunction = SettingsLevellFarmCheck,
+										Path = PathOtherIsland,
+										Octree = OctreeOtherIsland
+									})
+								else
+									WalkTo(PosDatThuyen,SettingsLevelFarmCheck)
+									SpawnBoat(SettingsLevelFarmCheck)
+								end
+							else
+								LenThuyen(Vector3.new(-1315.3685302734375, 10.434853553771973, 1112.8785400390625),"Sandora")
+							end
+						end
+					else
+						if not IsThereAnyAvaliableShipForPlayer() then 
+							if plr:DistanceFromCharacter(PosDatThuyen) > 20 then 
+								WalkPathFind2(PosDatThuyen,nil,{
+									StopFunction = SettingsLevellFarmCheck,
+									Path = PathOtherIsland,
+									Octree = OctreeOtherIsland
+								})
+							else
+								WalkTo(PosDatThuyen,SettingsLevelFarmCheck)
+								SpawnBoat(SettingsLevelFarmCheck)
+							end
+						else
+							LenThuyen(Vector3.new(-6489.087890625, 1.4823529720306396, 1736.233154296875),"Kori Island")
+						end
+					end
+				end
+			end
+		else
+			local MiddleStandPosition = Vector3.new(-6694.89306640625, 76.4823226928711, 2081.525390625)
+			local KoriIslandPosition = Vector3.new(-6684.44, 10, 1828.623)
+			if plr:DistanceFromCharacter(KoriIslandPosition) < 1000 then 
+				if plr:DistanceFromCharacter(MiddleStandPosition) < 10 then 
+					WalkTo(MiddleStandPosition,SettingsLevelFarmCheck)
+				else
+					WalkPathFind2(MiddleStandPosition,nil,{
+						StopFunction = SettingsLevelFarmCheck,
+						Path = PathOtherIsland,
+						Octree = OctreeOtherIsland
+					})
+				end
+			else
+				if IsPlayerAlive() and plr.Character.HumanoidRootPart.Position.Y < -2000 then
+					if data.Stats.SpawnPoint.Value ~= "Fishman Island" then 
+						UpdateStatusText("Setting spawn point at Fishman Island")
+						WalkPathFind2(FishmanSetSpawnPosition,nil,{
+							StopFunction = SettingsLevelFarmCheck,
+							Path = PathODuoiNuoc,
+							Octree = OctreeODuoiNuoc
+						})
+						if plr:DistanceFromCharacter(FishmanSetSpawnPosition) < 10 then 
+							WalkTo(FishmanSetSpawnPosition,SettingsLevelFarmCheck)
+							GetQuest()
+						end
+					else
+						if CanGetQuest("Help becky") == "Can get quest" then 
+							UpdateStatusText("Getting Level Farm Quest (Fishman Island)")
+							WalkPathFind2(FishmanQuestPosition,nil,{
+								StopFunction = SettingsLevelFarmCheck,
+								Path = PathODuoiNuoc,
+								Octree = OctreeODuoiNuoc
+							})
+							if plr:DistanceFromCharacter(FishmanQuestPosition) < 10 then 
+								WalkTo(FishmanQuestPosition,SettingsLevelFarmCheck)
+								GetQuest()
+								getgenv().standpos_fi = nil
+							end
+						elseif CanGetQuest("Help becky") == "Doing other quest" and plr.PlayerGui.Quest.Quest.Visible then
+							ClickGui(plr.PlayerGui.Quest.Quit)
+						else
+							if not GetRifle() then
+								EquipRifleFromInv() 
+							end
+							if CanAddGunPoint() then 
+								AddGunPoint()
+							end
+							UpdateStatusText("Farming Level (Fishman Island)")
+							local v = GetNearestFishman()
+							if v then 
+								local shootposition = CFrame.new(RandomPartPosition(v.Head))
+								if (not standpos_fi or not poslastupdate_bi) or tick() - poslastupdate_bi > 120 then
+									getgenv().standpos_fi = getRandomPositionInRegion(Vector3.new(7810.50830078125, -2176.83203125, -17181.1484375),Vector3.new(7772.77197265625, -2176.83203125, -17177.931640625))
+									getgenv().poslastupdate_bi = tick()
+								end
+								if Settings.HopWhenNear and IsPlayerNear(standpos_fi) < 500 then
+									TeleportLow()
+									UpdateStatusText("Hopping Server (Player nearby)")
+								end
+								local CurrentHealth
+								repeat wait() 
+									if IsMobAlive(v) then 
+										ZoomMin()
+										if plr:DistanceFromCharacter(standpos_fi) > 20 then 
+											WalkPathFind2(standpos_fi,nil,{
+												StopFunction = SettingsLevelFarmCheck,
+												Path = PathODuoiNuoc,
+												Octree = OctreeODuoiNuoc
+											})
+										else
+											if plr:DistanceFromCharacter(standpos_fi) > 10 then 
+												Walk(standpos_fi, SettingsLevelFarmCheck)
+											end
+										end
+										if not IsPlayerAlive() then break end
+										if IsMobAlive(v) then
+											if not CurrentHealth then 
+												CurrentHealth = {
+													Time = tick(),
+													Health = v.Humanoid.Health
+												}
+											end
+											local vel = v.HumanoidRootPart.Velocity
+											if tick() - CurrentHealth.Time > 10 and v.Humanoid.Health == CurrentHealth.Health then 
+												shootposition = CFrame.new(v.HumanoidRootPart)
+												vel = Vector3.new()
+											else
+												shootposition = CFrame.new(RandomPartPosition(v.Head))
+												CurrentHealth = {
+													Time = tick(),
+													Health = v.Humanoid.Health
+												}
+											end
+											if v:FindFirstChild("HumanoidRootPart") then 
+												RotateToPosition(shootposition + vel * 0.16, true,true)
+											end
+										end
+										
+										if not Equiped("Rifle") then 
+											Equip("Rifle")
+										end
+										ClickAtPosition(workspace.CurrentCamera.ViewportSize/2,true,true,math.random(0.01,0.02))
+										SendKey("R",true)
+										wait()
+										SendKey("R",false)
+									end
+								until not IsMobAlive(v) or not Settings.LevelFarm or CanGetQuest("Help becky") == "Can get quest" or not IsPlayerAlive()
+							else
+								local WaitingMob = Vector3.new(7810.50830078125, -2176.83203125, -17181.1484375)
+								if plr:DistanceFromCharacter(WaitingMob) > 50 then 
+									WalkPathFind2(WaitingMob,nil,{
+										StopFunction = SettingsLevelFarmCheck,
+										Path = PathODuoiNuoc,
+										Octree = OctreeODuoiNuoc
+									})
+								end
+								wait(1)
+							end
+						end
+					end
+				else
+					local GoFishmanPos = Vector3.new(5639.86865, -92.762001, -16611.4688)
+					if not  Settings.FI_InstantTP and plr.Character:FindFirstChild("coatBubble") and plr:DistanceFromCharacter(FishmanCavePosition) < 200 then 
+						UpdateStatusText("Going to Fishman Island (Solving underwater maze)")
+						if plr:DistanceFromCharacter(GoFishmanPos) < 10 then 
+							WalkTo(GoFishmanPos,function() 
+								return Settings.LevelFarm == false or plr.Character.HumanoidRootPart.Position.Y < - 2000
+							end)
+						else
+							WalkPathFind2(GoFishmanPos,nil,{
+								StopFunction = function() 
+									return Settings.LevelFarm == false or plr.Character.HumanoidRootPart.Position.Y < - 2000
+								end,
+								UnderWater = true,
+								Path = FishManPath,
+								Octree = FishmanOctree,
+								Timeout = 5
+							})
+						end
+					elseif not Settings.FI_InstantTP and plr:DistanceFromCharacter(FishmanCavePosition) < 100 and data.Stats.Peli.Value >= 2000 then
+						if not plr.Character:FindFirstChild("coatBubble") then
+							UpdateStatusText("Buying Bubble to goto Fishman Island")
+							local StopFunc = function() 
+								if plr.Character.Humanoid.SeatPart ~= nil then 
+									SendKey("Space",true)
+									wait(.4)
+									SendKey("Space",false)
+								end
+								return Settings.LevelFarm == false
+							end
+							WalkPathFind2(SellBubble,StopFunc)
+							WalkTo(SellBubble,SettingsLevelFarmCheck,StopFunc)
+							if plr:DistanceFromCharacter(SellBubble) < 5 then 
+								GetQuest(SettingsLevelFarmCheck)
+							end
+						end
+					else
+						if data.Stats.Peli.Value >= (Settings.FI_InstantTP and (CheckInven("Rowboat") and 0 or 75) or (2000 + 75 * (not CheckInven("Rowboat") and 1 or 0))) then
+							if not CheckInven("Rowboat") then 
+								UpdateStatusText("Buying Rowboat")
+								WalkPathFind2(ChoBanThuyen, SettingsLevelFarmCheck)
+								if plr:DistanceFromCharacter(ChoBanThuyen.p) < 10 then 
+									BuyItem(workspace.BuyableItems.Rowboat.Boat.HumanoidRootPart)
+								else
+									if plr:DistanceFromCharacter(ChoBanThuyen.p) < 20 then 
+										WalkTo(ChoBanThuyen,SettingsLevelFarmCheck)
+									end
+								end
+							else
+								if Settings.FI_InstantTP then
+									plr.Character.HumanoidRootPart.CFrame = CFrame.new(5639.86865, -92.762001, -16611.4688)
+									wait(1)
+									return
+								end
+								if IsStringNullOrEmpty(data.Inventory.EquipedShip.Value) then
+									EquipItem("Rowboat","ShipRowboat",function() 
+										return Settings.LevelFarm == false or not IsStringNullOrEmpty(data.Inventory.EquipedShip.Value)
+									end)
+								else
+									UpdateStatusText("Going to Fishman Cave")
+									if plr:DistanceFromCharacter(FishmanCavePosition) < 100 then
+										if plr:DistanceFromCharacter(FishmanCavePosition) > 5 then 
+											WalkTo(FishmanCavePosition,SettingsLevelFarmCheck,nil,{
+												SeatCheck= true
+											})
+										end
+									else
+										local s,e = pcall(function() 
+											if IsThereAnyAvaliableShipForPlayer()  then
+												if plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then  
+													if plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+														SendKey("Space",true)
+														wait(.4)
+														SendKey("Space",false)
+													end
+													if plr.Character.Humanoid.SeatPart ~= nil and plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+														SendKey("Space",true)
+														wait(.4)
+														SendKey("Space",false)
+														wait(1)
+													end
+													SendKey("W",true)
+													local StopFunc = function() 
+														SendKey("Space",true)
+														SendKey("W",true)
+														wait()
+														if IsPlayerAlive() and plr.Character.Humanoid.SeatPart ~= nil and plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+															SendKey("Space",true)
+															wait(.4)
+															SendKey("Space",false)
+															wait(1)
+														end
+														if IsPlayerAlive() then
+															local WallHeight = CheckWall(plr.Character.HumanoidRootPart.CFrame)
+															if WallHeight > 0 then 
+																SendKey("Space",true)
+																wait(.4)
+																SendKey("Space",false)
+																wait(1)
+															end
+														end
+														return Settings.LevelFarm == false or not workspace.Ships:FindFirstChild(plr.Name.."Ship") or not IsPlayerAlive()
+													end
+													if workspace.Ships[plr.Name.."Ship"]:FindFirstChild("VehicleSeat") and plr:DistanceFromCharacter(workspace.Ships[plr.Name.."Ship"].VehicleSeat.Position) < 30 then 
+														WalkTo(workspace.Ships[plr.Name.."Ship"].VehicleSeat.Position,StopFunc,nil,{
+															DiThuyen = true
+														})
+														SendKey("Space",false)
+														SendKey("W",false)
+													else
+														if workspace.Ships[plr.Name.."Ship"]:FindFirstChild("VehicleSeat") then 
+															if workspace.Ships:FindFirstChild(plr.Name.."Ship") and plr:DistanceFromCharacter(workspace.Ships[plr.Name.."Ship"].VehicleSeat.Position) < 10 then 
+																WalkTo(workspace.Ships[plr.Name.."Ship"].VehicleSeat.Position,nil,{
+																	StopFunction = StopFunc,
+																	StopDistance = 6,
+																	DiThuyen = true
+																})
+																wait(.1)
+																SendKey("W",false)
+															else
+																WalkPathFind2(workspace.Ships[plr.Name.."Ship"].VehicleSeat.CFrame,{
+																	StopFunction = StopFunc,
+																	DiThuyen = true
+																})
+																wait(.1)
+																SendKey("W",false)
+															end
+														end
+													end
+													SendKey("W",false)
+												else
+													if plr.Character.Humanoid.SeatPart ~= nil and plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+														SendKey("Space",true)
+														wait(.4)
+														SendKey("Space",false)
+													end
+													DriveBoatPathFind(Vector3.new(5682.19, 5, -16458.479),function() 
+														if IsPlayerAlive() and plr.Character.Humanoid.SeatPart ~= nil and plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat then 
+															SendKey("Space",true)
+															wait(.4)
+															SendKey("Space",false)
+														end
+														return Settings.LevelFarm == false or plr.Character.Humanoid.SeatPart ~= workspace.Ships[plr.Name.."Ship"].VehicleSeat
+													end)
+													SendKey("Space",true)
+													wait(.1)
+													SendKey("Space",false)
+												end
+											else
+												if plr:DistanceFromCharacter(ThaThuyenODayNha.p) > 20 then 
+													WalkPathFind2(ThaThuyenODayNha,SettingsLevelFarmCheck)
+												else
+													WalkTo(ThaThuyenODayNha.p,SettingsLevelFarmCheck)
+													SpawnBoat(function() 
+														return plr:DistanceFromCharacter(ThaThuyenODayNha.p) > 10 or Settings.LevelFarm == false
+													end)
+												end
+											end
+										end)
+										if not s then print(e) end
+									end
+								end
+							end
+						else
+							if not GetRifle() then
+								EquipRifleFromInv() 
+							else
+								if CanGetQuest("Help Raphtalia") == "Can get quest" then 
+									UpdateStatusText("Getting Level Farm Quest (Beginner Island)")
+									local QuestPosition = CFrame.new(1014.01708984375, 8.999984741210938, 1231.924072265625)
+									WalkPathFind2(QuestPosition, SettingsLevelFarmCheck)
+									local StartedGetQuest = tick()
+									repeat wait()
+										SendKey("T",true)
+									until plr.PlayerGui:FindFirstChild("NPCCHAT") or tick() - StartedGetQuest > 3 or not Settings.LevelFarm
+									SendKey("T",false)
+									repeat wait()
+										ContinueNPCChat()
+									until not plr.PlayerGui:FindFirstChild("NPCCHAT") or not Settings.LevelFarm --or GetCurrentQuest() ~= "None"
+									getgenv().standpos_bi = nil
+								elseif CanGetQuest("Help Raphtalia") == "Doing other quest" and plr.PlayerGui.Quest.Quest.Visible then
+									ClickGui(plr.PlayerGui.Quest.Quit)
+								else
+									UpdateStatusText("Farming 2k Peli before going to Fishman Island")
+									if CanAddGunPoint() then 
+										AddGunPoint()
+									end
+									for k,v in pairs(game.Workspace.NPCs:GetChildren()) do 
+										if CanGetQuest("Help Raphtalia") ~= "Can get quest" and Settings.LevelFarm and string.match(v.Name,"Bandit") and not string.match(v.Name,"Boss") and IsMobAlive(v) then 
+											local shootposition = CFrame.new(RandomPartPosition(v.Head))
+											if not standpos_bi or poslastupdate_bi and tick() - poslastupdate_bi > 120 then
+												getgenv().standpos_bi = getRandomPositionInRegion(FarmPos1,FarmPos2)
+												getgenv().poslastupdate_bi = tick()
+											end
+											if Settings.HopWhenNear and IsPlayerNear(standpos_bi) < 300 then
+												TeleportLow()
+												UpdateStatusText("Hopping Server (Player nearby)")
+											end
+											repeat wait() 
+												ZoomMin()
+												if plr:DistanceFromCharacter(standpos_bi) > 40 then 
+													WalkPathFind2(standpos_bi,SettingsLevelFarmCheck)
+												else
+													if plr:DistanceFromCharacter(standpos_bi) > 10 then 
+														Walk(standpos_bi, SettingsLevelFarmCheck)
+													end
+												end
+												if IsMobAlive(v) then
+													shootposition = CFrame.new(RandomPartPosition(v.Head))
+												end
+												RotateToPosition(shootposition + v.HumanoidRootPart.Velocity * 0.16, true)
+												if not Equiped("Rifle") then 
+													Equip("Rifle")
+												end
+												ClickAtPosition(workspace.CurrentCamera.ViewportSize/2,true,true)
+												SendKey("R",true)
+												wait()
+												SendKey("R",false)
+											until not IsMobAlive(v) or not Settings.LevelFarm or CanGetQuest("Help Raphtalia") == "Can get quest"
+										end
+									end
+								end
+							end	
+						end
+					end
+				end
+			end
+		end
+	end
+end
+while wait() do 
+	if Settings.LevelFarm and IsPlayerAlive() then
+		if data.Skills.Rokushiki.Value > 0 then 
+			data.Skills.Rokushiki.Value = 1
+		end
+		local _, _e = pcall(function()
+			FarmLevel()
+		end)
+        if _e then print(_e) end
+	else
+		data.Skills.Rokushiki.Value = Old
+	end
+end
+
+-- check error
+end)
+if e then print(e) end
